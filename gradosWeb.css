@@ -1,0 +1,353 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+#pantprinc {
+	position: relative; 
+	z-index: 0; 
+	/*border: 1px solid white;*/
+	width: 1000px; 
+	height:600px; 
+	margin: auto; 
+	margin-top: 20px; 
+}
+
+#fondosup {
+	left: 251px; 
+	top: 40px;
+	position: absolute;
+}
+
+#fondoinf {
+	left: 251px; 
+	top: 363px;
+	position: absolute;
+}
+
+#baseGrados {
+	left: 336px; 
+	top: 188px;
+	position: absolute;
+}
+
+#grado1 {
+	left: 300px; 
+	top: 415px;
+	position: absolute;
+}
+
+#grado1-1 {
+	left: 449px; 
+	top: 414px;
+	position: absolute;
+	border: 1px dashed gray;
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado2 {
+	left: 300px; 
+	top: 383px;
+	position: absolute;
+}
+
+#grado2-1 {
+	left: 449px; 
+	top: 382px;
+	position: absolute;
+	border: 1px dashed gray;
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado3 {
+	left: 300px; 
+	top: 351px;
+	position: absolute;
+}
+#grado3-1 {
+	left: 449px; 
+	top: 350px;
+	position: absolute;
+	border: 1px dashed gray;
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+#grado4 {
+	left: 300px; 
+	top: 319px;
+	position: absolute;
+}
+#grado4-1 {
+	left: 449px; 
+	top: 318px;
+	position: absolute;
+	border: 1px dashed gray;
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+#grado5 {
+	left: 300px; 
+	top: 287px;
+	position: absolute;
+}
+#grado5-1 {
+	left: 449px; 
+	top: 286px;
+	position: absolute;
+	border: 1px dashed gray;
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+#grado6 {
+	left: 300px; 
+	top: 255px;
+	position: absolute;
+}
+#grado6-1 {
+	left: 449px; 
+	top: 254px;
+	position: absolute;
+	border: 1px dashed gray;
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+#grado7 {
+	left: 300px; 
+	top: 223px;
+	position: absolute;
+}
+#grado7-1 {
+	left: 449px; 
+	top: 222px;
+	position: absolute;
+	border: 1px dashed gray;
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+#grado8 {
+	left: 300px; 
+	top: 191px;
+	position: absolute;
+}
+#grado8-1 {
+	left: 449px; 
+	top: 190px;
+	position: absolute;
+	border: 1px dashed gray;
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#teclado {
+	left: 252px; 
+	top: 190px;
+	position: absolute;
+}
+
+#maskTeclado {
+	left: 216px; 
+	top: -10px;
+	position: absolute;
+}
+
+#gradop {
+	left: 915px; 
+	top: 130px;
+	position: absolute;
+	display: none;
+}
+
+#panelTonsMayor {
+	left: 120px; 
+	top: 170px;
+	position: absolute;
+}
+
+#panelTonsMenor {
+	left: 35px; 
+	top: 170px;
+	position: absolute;
+}
+
+#maskPanelTons {
+	left: 30px; 
+	top: 160px;
+	position: absolute;
+}
+
+#nuevosonido {
+	left: 517px;
+	top: 522px;
+	position: absolute;
+	width: 90px;
+	height: 20px;
+}
+
+#repetirsonido {
+	left: 620px;
+	top: 522px;
+	position: absolute;
+	width: 98px;
+	height: 20px;
+}
+
+#evaluar {
+	left: 730px;
+	top: 522px;
+	position: absolute;
+	width: 70px;
+	height: 20px;
+}
+
+#oirtonalidad {
+	left: 360px;
+	top: 561px;
+	position: absolute;
+	width: 90px;
+	height: 18px;
+}
+
+#FA {
+	left: 121px;
+	top: 442px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+
+#FAs {
+	left: 121px;
+	top: 417px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#SOL {
+	left: 121px;
+	top: 392px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#LAb {
+	left: 121px;
+	top: 368px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#LA {
+	left: 121px;
+	top: 343px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#SIb {
+	left: 121px;
+	top: 319px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#SI {
+	left: 121px;
+	top: 294px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#DO {
+	left: 121px;
+	top: 269px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#DOs {
+	left: 121px;
+	top: 245px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#RE {
+	left: 121px;
+	top: 220px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#MIb {
+	left: 121px;
+	top: 196px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+#MI {
+	left: 121px;
+	top: 171px;
+	position: absolute;
+	width: 70px;
+	height: 18px;
+	border-radius: 8px;
+}
+
+#titulo {
+	left: 60px;
+	top: 145px;
+	position: absolute;
+}
+
+#encabezado {
+	left: 397px;
+  	top: 42px;
+  	position: absolute;
+  	font-size: 22px;
+  	color: rgb(255, 187, 0 );
+  	width: 450px;
+  	text-align: center;
+}
+
+#marcador1 {
+	left: 165px;
+  	top: 120px;
+  	position: absolute;
+  	font-size: 30px;
+  	color: rgb(0, 180, 255 );
+  	width: 450px;
+  	text-align: center;
+}
+
+#marcador2 {
+	left: 120px;
+  	top: 124px;
+  	position: absolute;
+  	font-size: 24px;
+  	color: rgb(150, 150, 150 );
+  	width: 450px;
+  	text-align: center;
+}

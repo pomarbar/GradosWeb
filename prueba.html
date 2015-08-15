@@ -1,0 +1,74 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Div fantasmas</title>
+        <script type="text/javascript" src="jquery-2.1.4.js"></script>
+        <script type='text/javascript'>
+        $(document).ready(function(){
+
+  $("#grado1-1").hover(
+    function(){
+        //debugger
+        $("#gradop").appendTo("#grado1-1");
+        $("#gradop").css("position", "relative");
+        $("#gradop").css("left", 1);
+        $("#gradop").css("top", 1);
+    },
+    function(event){
+        $("#gradop").appendTo("body");
+        $("#gradop").css("position", "absolute");
+        $("#gradop").css("left", 10);
+        $("#gradop").css("top", 90);
+    }
+  );
+
+});
+        </script>
+        <style type="text/css">
+        .active {
+    background-color:#556677;
+}
+
+#grado1-1 {
+    left: 10px; 
+    top: 10px;
+    position: absolute;
+    border: 1px dashed gray;
+    border-radius: 100%;
+    width: 29px;
+    height: 29px;
+}
+
+#grado2-1 {
+    left: 10px; 
+    top: 50px;
+    position: absolute;
+    border: 1px dashed gray;
+    border-radius: 100%;
+    width: 29px;
+    height: 29px;
+}
+
+#gradop {
+    left: 10px; 
+    top: 90px;
+    position: absolute;
+    border: 1px dashed gray;
+    border-radius: 100%;
+    width: 29px;
+    height: 29px;
+    background-color: blue;
+}
+
+
+        </style>
+    </head>
+    <body>
+    
+        <div id="grado1-1"></div>
+        <div id="grado2-1"></div>
+        <div id="gradop"></div>
+    </body>
+</html>

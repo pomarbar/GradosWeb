@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pruebas Web 2015</title>
+    <style type="text/css">
+body
+{
+    background: black;
+    color: white;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    
+    
+    <canvas id="c" width="1100" height="650" style="position: relative; z-index: 0; border: 1px solid white">
+    </canvas>
+    <div id="buttons">
+      <input type="button" id="clear" value="Clear">
+    </div>
+	<script type="text/javascript">
+	var canvas = document.getElementById('c');
+    var context = canvas.getContext('2d');
+    var imageObj = new Image();
+
+      imageObj.onload = function() {
+        // recorta una imagen, solo muestra la parte recortada en el canvas.
+        // El recorte esta dado por las primeras 4 variables,
+        // las siguientes 4 son las coordenadas y el recuadro en el canvas 
+        var sourceX = 0; // coordenada X de la esquina superior desde donde se recorta la imagen
+        var sourceY = 127 * 0.5; // coordenada Y de la esquina superior desde donde se recorta la imagen
+        var sourceWidth = 85; // ancho del recorte
+        var sourceHeight = 300; // alto del recorte
+        var destWidth = 85; // ancho del recuadro, en el canvas, donde se coloca la imagen recortada
+        var destHeight = 300; // alto del recuadro, en el canvas, donde se coloca la imagen recortada
+        var destX = 50; // coordenada X de la esquina superior, en el canvas, donde se mostrará la imagen
+        var destY = 50; // coordenada X de la esquina superior, en el canvas, donde se mostrará la imagen
+
+        context.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+
+      };
+      imageObj.src = "TECLADO.png";
+
+      var imageGeneral = new Image();
+
+      imageGeneral.onload = function() {
+     
+        context.drawImage(imageGeneral, 100, 20, 860, 640);
+
+      };
+      imageGeneral.src = "FONDO INF.png";
+
+    // Esta función sirve para mover una imagen dentro del canvas, de la cual solo
+    // se muestra una parte, 
+    function moverImagenRecortada(y) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        sourceY = y;
+        context.drawImage(imageObj, 0, sourceY, 94, 300, 50, 50, 70, 300);
+    }
+    
+    function AnimarSonPreg()
+    {
+
+    if (sourceY > 270) 
+        {
+        sourceY += 5;
+        context.drawImage(imageObj, 0, sourceY, 94, 84, 50, 50, 94, 84);
+        // setTimeout(AnimarSonPreg,15);
+        }
+
+    }
+    // bind event handler to clear button
+      document.getElementById('clear').addEventListener('click', function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }, false);
+
+	</script>
+</body>
+</html>
