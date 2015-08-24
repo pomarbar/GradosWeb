@@ -163,7 +163,7 @@ body {
 
 #gradop {
 	left: 915px; 
-	top: 130px;
+	top: 140px;
 	position: absolute;
 	display: none;
 }
@@ -188,10 +188,11 @@ body {
 
 #nuevosonido {
 	left: 517px;
-	top: 522px;
+	top: 520px;
 	position: absolute;
 	width: 90px;
-	height: 20px;
+	height: 22px;
+	color: orange;
 }
 
 #repetirsonido {
@@ -200,6 +201,7 @@ body {
 	position: absolute;
 	width: 98px;
 	height: 20px;
+	color: yellow;
 }
 
 #evaluar {
@@ -208,6 +210,7 @@ body {
 	position: absolute;
 	width: 70px;
 	height: 20px;
+	color: lime;
 }
 
 #oirtonalidad {
@@ -216,6 +219,7 @@ body {
 	position: absolute;
 	width: 90px;
 	height: 18px;
+	color: yellow;
 }
 
 #FA {
@@ -350,4 +354,113 @@ body {
   	color: rgb(150, 150, 150 );
   	width: 450px;
   	text-align: center;
+}
+
+#marcaColumna1 {
+	position: absolute;
+	left:458px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+}
+
+#marcaColumna2 {
+	position: absolute;
+	left:498px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#marcaColumna3 {
+	position: absolute;
+	left:538px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#marcaColumna4 {
+	position: absolute;
+	left:578px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#marcaColumna5 {
+	position: absolute;
+	left:617px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#marcaColumna6 {
+	position: absolute;
+	left:656px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#marcaColumna7 {
+	position: absolute;
+	left:696px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#marcaColumna8 {
+	position: absolute;
+	left:736px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#marcaColumna9 {
+	position: absolute;
+	left:775px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#marcaColumna10 {
+	position: absolute;
+	left:815px;
+	top: 82px;
+	height: 35px;
+	width: 11px;
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#sombraGrados {
+	position: absolute;
+	display: none;
+	left:380px;
+	top: 252px;
+	height: 32px;
+	width: 100px;
+	opacity: 0.34;
+    filter: alpha(opacity=34); /* For IE8 and earlier */
 }
