@@ -16,8 +16,11 @@ var teclas = ['tecla1.png','tecla2.png','tecla3.png','tecla4.png','tecla5.png','
 var coordsTeclado = [-5, 15, 29, 46, 61, 78, 97, 127, 142, 157, 175, 190];
 var idTonalidades = ["#FA", "#FAs", "#SOL", "#LAb", "#LA", "#SIb", "#SI", "#DO", "#DOs", "#RE", "#MIb", "#MI"];
 var gradoGrafs = ["grado1.png","grado2.png","grado3.png","grado4.png","grado5.png","grado6.png","grado7.png","grado8.png","gradop.png"];
+var posMarcasSerie = [458, 498, 538, 578, 617, 656, 696, 736, 775, 815];
+var tamañoSerie = 0;
 var grado = 0;
 var gradoSelUsuario = 0;
+var posGradop = 0; // guarda posición de gradop cuando el usuario hace click en gradop y queda fijo frente a algún grado
 var meta = 0; // cantidad de ejercicios
 var nota = 0;
 var audioElement = null;
@@ -35,7 +38,7 @@ var estado = 0; // 0 = Ajustar meta inicila
 				// 8 = escucha parte de tonalidad cuando no se ha elegido un nuevo sonido
 				// 9 = escucha parte de tonalidad después de ha ber elegido un nuevo sonido
 				// 10 = confirma si quiere un nuevo sonido, antes de ubicar gradop
-				// 11 =  escucha parte de tonalidad después de haber ubicado gradop en algún grado
+				// 11 = escucha parte de tonalidad después de haber ubicado gradop en algún grado
 				// 12 = repite sonido después de ubicar gradop
 				// 13 = confirma si quiere un nuevo sonido, después de ubicar gradop
 
@@ -135,46 +138,87 @@ function animarHorizontal(sel, xinicial, xfinal, tamPaso, tempo,funcionDespues) 
 		)
 }
 
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function drag(ev) {
-    ev.originalEvent.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    //var data = ev.originalEvent.dataTransfer.getData("text");
-   
-    $("#gradop").css("left", $(ev.target).position().left + 1);
-    $("#gradop").css("top", $(ev.target).position().top + 1);
-    estado = 6; // espera evaluar principalmente
-    $("#encabezado").text("Evalúe su respuesta");
-}
 
 function esperaMoverGrado() {
 	estado = 5;
-	$("#gradop").on("dragstart", "", function (evento) {
-		drag(evento);
-	});
+	// $("#gradop").on("dragstart", "", function (evento) {
+	// 	drag(evento);
+	// });
+	$("#gradop").appendTo("#pantprinc");
+	$("#gradop").css("position", "absolute");
+	$("#gradop").css("left", 450);
+	$("#gradop").css("top", 140);
 
 	for (var i = 1; i < 9; i++) {
-		$("#grado" + i + "-1").on("drop", "", function (evento) {
-			drop(evento);
-		});
-		$("#grado" + i + "-1").on("dragover", "", function (evento) {
-			allowDrop(evento);
-		});
-		 // $("#grado" + i + "-1").mouseover(function (evento) {
-		 // 	$("#gradop").css("top", $(evento.target).position().top + 1);;
-		 // });
+		$(document).ready(function(){
+			var nom = "#grado" + i + "-1";
+	      $("#grado" + i + "-1").hover(  // función para mover grado ? frente a grados de respuesta.
+	        function(event){
+	            //debugger
+	            $("#gradop").appendTo(nom);
+	            $("#gradop").css("position", "relative");
+	            $("#gradop").css("left", 1);
+	            $("#gradop").css("top", 1);
+	            $("#sombraGrados").css("display", "inline");
+	            var x = $(nom).position();
+	            $("#sombraGrados").css("top", x.top);
+	        },
+	        function(event){
+	            $("#gradop").appendTo("#pantprinc");
+	            $("#gradop").css("position", "absolute");
+	            $("#gradop").css("left", 450);
+	            $("#gradop").css("top", 140);
+	            $("#sombraGrados").css("display", "none");
+	        }
+	      );
 
-		 // $("#grado" + i + "-1").mouseout(function (evento){
-		 // 	$("#gradop").css("top", 130);
-		 // });
+	    });
+
+		$("#gradop").click(function(){	// Desactiva la función HOVER
+			var p = $("#gradop").position();
+			// Este condicional evita que se desactive el efecto HOVER si gradop no está
+			// ubicado en uno de los círculos punteados para recibir respuesta. Evita pasar al
+			// siguiente estado donde el programa espera que el usuario pida EVALUAR su respuesta.
+			if (p.top !== 140) {
+				$("#grado1-1").unbind("mouseenter mouseleave");
+				$("#grado2-1").unbind("mouseenter mouseleave");
+				$("#grado3-1").unbind("mouseenter mouseleave");
+				$("#grado4-1").unbind("mouseenter mouseleave");
+				$("#grado5-1").unbind("mouseenter mouseleave");
+				$("#grado6-1").unbind("mouseenter mouseleave");
+				$("#grado7-1").unbind("mouseenter mouseleave");
+				$("#grado8-1").unbind("mouseenter mouseleave");
+
+				$("#grado1-1").click(function() { // Criterio para evaluar seleccion de usuario
+	   				posGradop = 0;
+				});
+				$("#grado2-1").click(function() {
+	   				posGradop = 1;
+				});
+				$("#grado3-1").click(function() {
+	   				posGradop = 2;
+				});
+				$("#grado4-1").click(function() {
+	   				posGradop = 3;
+				});
+				$("#grado5-1").click(function() {
+	   				posGradop = 4;
+				});
+				$("#grado6-1").click(function() {
+	   				posGradop = 5;
+				});
+				$("#grado7-1").click(function() {
+	   				posGradop = 6;
+				});
+				$("#grado8-1").click(function() {
+	   				posGradop = 7;
+				});
+				estado = 6; // espera evaluar principalmente
+	    		$("#encabezado").text("Evalúe su respuesta");
+	    	};
+		});
 	};
-	$("#encabezado").text("Ubica el sonido ? frente a un grado");
+	
 	// pasa a estado 6 cuando se ubique gradop en algún grado o
 	// a estado 9 si oprime boton oir tonalidad
 	
@@ -201,7 +245,7 @@ function ajustarTonalidad(num, $obj) {
 	$("#grado7").css('left', 300);
 	$("#grado8").css('left', 300);
 
-	$(".tonal").css('border', "");
+	$(".tonal").css('border', ""); // asi se llama una clase de objetos.
 	$obj.css('border', "1px solid white");
 
 	animarHorizontal("#grado1", 300, 370, 1, 10, function() {
@@ -244,20 +288,14 @@ function ajustarTonalidad(num, $obj) {
 function evaluar() {
 	estado = 7;
 	var lisRom = ["I.", "II.", "III.", "IV.", "V.", "VI.", "VII.", "I agudo."];
-	var y = $("#gradop").position().top;
-	for (var i = 0; i < 8; i++) {
-		pos = $("#grado" + (i + 1) + "-1").position().top;
-		if (pos + 1 == y) {
-			break;
-		};
-	};
-
-	if (grado == i) {
-		$("#encabezado").text("Muy bien, ha sonado el grado " + lisRom[i]);
+	if (grado == posGradop) {
+		$("#encabezado").text("Muy bien, ha sonado el grado " + lisRom[posGradop]);
 		document.getElementById("gradop").src = gradoGrafs[grado];
 		esperarTocarGrado(grado, true,true, 1500, function() {
 		aciertos++;
 		$("#marcador1").text(aciertos);
+		$("#encabezado").text("Selecciona un Nuevo sonido");
+		$(".g1").css("background-color","");
 		if (aciertos >= meta) {
 			$("#encabezado").text("¡ Muy bien ! has alcanzado la meta propuesta.");
 			seleccionarMeta();
@@ -266,15 +304,18 @@ function evaluar() {
 		}});
 	} else {
 		$("#encabezado").text("Intenta con otro grado.");
-		if (gradoSelUsuario == i) { // evita que el usuario evalúe un sonido equivocado mas de una vez
+		var nom = "#grado" + (posGradop + 1) + "-1"; 
+		$(nom).css("background-color","rgb(50,50,50)"); // marca con gris el sonido equivocado
+		if (gradoSelUsuario == posGradop) { // evita que el usuario evalúe un sonido equivocado mas de una vez
 			$("#encabezado").text("Pruebe ubicando el sonido ? frente a otro grado.");
+			esperaMoverGrado();
 		} else{
 			pifias++;
 			$("#marcador2").text(pifias);
-			estado = 6;
+			esperaMoverGrado();
 		};	
 	};
-	gradoSelUsuario = i;
+	gradoSelUsuario = posGradop;
 }
 
 function seleccionarTonalidad() {
@@ -286,25 +327,33 @@ function seleccionarMeta(){
 	estado = 0;
 	aciertos = 0;
 	pifias = 0;
-	meta = prompt("¿Cuántos ejercicios desea hacer?")
+	meta = prompt("Define una Meta: \n ¿Con cuántos sonidos desea practicar?")
 	seleccionarTonalidad();
 	$("#gradop").css("display", "none");
+	$("#sombraGrados").css("display", "none");
 	$("#marcador1").text(aciertos);
 	$("#marcador2").text(pifias);
+	$(".tonal").css('border', "");
+	document.getElementById('teclado').src = "teclado.png";
 }
 
 function oirNuevoSonido() {
     estado = 4;
+    $("#gradop").appendTo("#pantprinc");
+	$("#gradop").css("position", "absolute");
+	$("#gradop").css("left", 915);
+	$("#gradop").css("top", 140);
     document.getElementById('teclado').src = "teclado.png";
     document.getElementById('gradop').src = "gradop.png";
     $("#gradop").css("display", "inline");
     var x = $("#gradop").position().left
     if (x == 915 || x == 450) {
-        $("#gradop").css("top", 130);
+        $("#gradop").css("top", 140);
         seleccionarGrado();
         animarHorizontal("#gradop", 915, 450, 5, 10, esperaMoverGrado);
         gradoSelUsuario = 0;
     }
+    $("#encabezado").text("Ubica el sonido ? frente a un grado");
 }
 
 function esperarTocarGrado(grado, tocar, ver, lapso, funDespues) {
@@ -350,7 +399,60 @@ function pasaa6() {
 function inicio() {
 	iniGrados();
 
+	$("#nuevosonido").on( "mouseover", function() {
+		$("#nuevosonido").unbind("mouseenter mouseleave");
+  		if (estado == 3 || estado == 5 || estado == 6) {
+			$("#nuevosonido").hover(function(){
+    		$(this).css("background-color", "rgb(35,35,35)");
+    		}, function(){
+    		$(this).css("background-color", "");
+			});
+		}else{
+			$("#nuevosonido").css("background-color", "");
+		};
+	});
+	
+	$("#repetirsonido").on( "mouseover", function() {
+		$("#repetirsonido").unbind("mouseenter mouseleave");
+  		if (estado == 3 || estado == 5 || estado == 6) {
+			$("#repetirsonido").hover(function(){
+    		$(this).css("background-color", "rgb(35,35,35)");
+    		}, function(){
+    		$(this).css("background-color", "");
+			});
+		}else{
+			$("#repetirsonido").css("background-color", "");
+		};
+	});
+
+	$("#oirtonalidad").on( "mouseover", function() {
+		$("#oirtonalidad").unbind("mouseenter mouseleave");
+  		if (estado == 3 || estado == 5 || estado == 6) {
+			$("#oirtonalidad").hover(function(){
+    		$(this).css("background-color", "rgb(35,35,35)");
+    		}, function(){
+    		$(this).css("background-color", "");
+			});
+		}else{
+			$("#oirtonalidad").css("background-color", "");
+		};
+	});
+
+	$("#evaluar").on( "mouseover", function() {
+		$("#evaluar").unbind("mouseenter mouseleave");
+  		if (estado == 3 || estado == 5 || estado == 6) {
+			$("#evaluar").hover(function(){
+    		$(this).css("background-color", "rgb(35,35,35)");
+    		}, function(){
+    		$(this).css("background-color", "");
+			});
+		}else{
+			$("#evaluar").css("background-color", "");
+		};
+	});
+
 	$("#nuevosonido").on("click", "", function (evento) {
+		$("#sombraGrados").css("display", "none");
 		if (estado == 3) {
            oirNuevoSonido();
        } else if (estado == 5) {
@@ -396,7 +498,7 @@ function inicio() {
 	});
 
 	$("#evaluar").on("click", "", function (evento) {
-		if (estado == 6) {
+		if (estado == 6 ) {
 			evaluar();
 		};
 	});
