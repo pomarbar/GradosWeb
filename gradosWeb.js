@@ -7,8 +7,11 @@ var listaGrados = [];
 var tonMayor = [0,2,4,5,7,9,11,12];
 var tonMenorNatural = [0,2,3,5,7,8,10,12];
 var tonMenorArmonica = [0,2,3,5,7,8,11,12];
-var tonUsuario = [0,2,4,5,7,9,11,12];
-var tonica = 7;
+var tonUsuario = []; // Vacío al iniciar.
+var tonica = 7; // Do al iniciar.
+var etiquetasMayor = ['FA','FA#/SOLb','SOL','LAb','LA','SIb','SI/DOb','DO','DO#/REb','RE','MIb','MI'];
+var etiquetasMenor = ['fa','fa#','sol','sol#/lab','la','la#/sib','si','do','do#','re','re#/mib','mi'];
+var modo = 0; // variable para cargar el modo correspondiente: 0 = Mayor, 1 = menor natural, 2 = menor armónico y 3 = menor melódico.
 var nomtonMayor = ['FA Mayor','FA# Mayor','SOL Mayor','LAb Mayor','LA Mayor','SIb Mayor','SI Mayor','DO Mayor','DO# Mayor','RE Mayor','MIb Mayor','MI Mayor'];
 var listaSonidos = ['Fa3.mp3','Fas3.mp3','Sol3.mp3','Lab3.mp3','La3.mp3','Sib3.mp3','Si3.mp3','Do4.mp3','Dos4.mp3','Re4.mp3','Mib4.mp3','Mi4.mp3','Fa4.mp3','Fas4.mp3','Sol4.mp3','Lab4.mp3','La4.mp3','Sib4.mp3','Si4.mp3','Do5.mp3','Dos5.mp3','Re5.mp3','Mib5.mp3','Mi5.mp3'];
 var mover = false;
@@ -234,7 +237,7 @@ function ajustarTonalidad(num, $obj) {
 	estado = 2;
 	listaGrados = [0,1,2,3,4,5,6,7];
 	tonica = num;
-	$("#nomTon").html(nomtonMayor[num]);
+	
 	$("#teclado").css('top', coordsTeclado[num]);
 	$("#grado1").css('left', 300);
 	$("#grado2").css('left', 300);
@@ -245,8 +248,10 @@ function ajustarTonalidad(num, $obj) {
 	$("#grado7").css('left', 300);
 	$("#grado8").css('left', 300);
 
-	$(".tonal").css('border', ""); // asi se llama una clase de objetos.
-	$obj.css('border', "1px solid white");
+	$(".tonal").css('border', "2px solid rgb(80,80,80)"); // asi se llama una clase de objetos.
+	$(".tonal").css('color', "rgb(80,80,80)");
+	$obj.css('border', "3px solid orange");
+	$obj.css('color', "rgb(0,160,255)");
 
 	animarHorizontal("#grado1", 300, 370, 1, 10, function() {
 		esperarFinAudio();
@@ -306,6 +311,7 @@ function evaluar() {
 		$("#encabezado").text("Intenta con otro grado.");
 		var nom = "#grado" + (posGradop + 1) + "-1"; 
 		$(nom).css("background-color","rgb(50,50,50)"); // marca con gris el sonido equivocado
+		$(nom).unbind("mouseenter mouseleave"); // desactiva efecto HOVER, no permite una segunda respuesta en este grado
 		if (gradoSelUsuario == posGradop) { // evita que el usuario evalúe un sonido equivocado mas de una vez
 			$("#encabezado").text("Pruebe ubicando el sonido ? frente a otro grado.");
 			esperaMoverGrado();
@@ -333,7 +339,8 @@ function seleccionarMeta(){
 	$("#sombraGrados").css("display", "none");
 	$("#marcador1").text(aciertos);
 	$("#marcador2").text(pifias);
-	$(".tonal").css('border', "");
+	$(".tonal").css('border', "2px solid rgb(80,80,80)");
+	$(".tonal").css('color', "rgb(80,80,80)");
 	document.getElementById('teclado').src = "teclado.png";
 }
 
@@ -399,8 +406,19 @@ function pasaa6() {
 function inicio() {
 	iniGrados();
 
+	// Ciclo para cargar nombres de tonalidades segun el modo activo.
+	for (var i = 0; i <= etiquetasMayor.length; i++) {
+		if (modo == 0) {
+			$(idTonalidades[i]).text(etiquetasMayor[i]);
+			tonUsuario = tonMayor;
+		} else{
+			$(idTonalidades[i]).text(etiquetasMenor[i]);
+		};		
+	};
+	
 	$("#nuevosonido").on( "mouseover", function() {
 		$("#nuevosonido").unbind("mouseenter mouseleave");
+		$("#nuevosonido").css("background-color", "");
   		if (estado == 3 || estado == 5 || estado == 6) {
 			$("#nuevosonido").hover(function(){
     		$(this).css("background-color", "rgb(35,35,35)");

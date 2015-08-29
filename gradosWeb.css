@@ -153,6 +153,8 @@ body {
 	left: 252px; 
 	top: 190px;
 	position: absolute;
+	opacity: 0.89;
+    filter: alpha(opacity=89); /* For IE8 and earlier */
 }
 
 #maskTeclado {
@@ -166,18 +168,6 @@ body {
 	top: 140px;
 	position: absolute;
 	display: none;
-}
-
-#panelTonsMayor {
-	left: 120px; 
-	top: 170px;
-	position: absolute;
-}
-
-#panelTonsMenor {
-	left: 35px; 
-	top: 170px;
-	position: absolute;
 }
 
 #maskPanelTons {
@@ -219,111 +209,134 @@ body {
 	position: absolute;
 	width: 90px;
 	height: 18px;
-	color: yellow;
+	color: rgb(0,235,255);
+}
+
+.tonal {
+	left: 121px;
+	position: absolute;
+	width: 80px;
+	height: 18px;
+	border-radius: 8px;
+	border: 2px solid rgb(80,80,80);
+	color: rgb(80,80,80);
 }
 
 #FA {
-	left: 121px;
-	top: 442px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 550px;
 }
 
 #FAs {
-	left: 121px;
-	top: 417px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 525px;
 }
+
 #SOL {
-	left: 121px;
-	top: 392px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 500px;
 }
+
 #LAb {
-	left: 121px;
-	top: 368px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 475px;
 }
+
 #LA {
-	left: 121px;
-	top: 343px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 450px;
 }
+
 #SIb {
-	left: 121px;
-	top: 319px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 425px;
 }
+
 #SI {
-	left: 121px;
-	top: 294px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 400px;
 }
+
 #DO {
-	left: 121px;
-	top: 269px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 375px;
 }
+
 #DOs {
-	left: 121px;
-	top: 245px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 350px;
 }
+
 #RE {
-	left: 121px;
-	top: 220px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 325px;
 }
+
 #MIb {
-	left: 121px;
-	top: 196px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 300px;
 }
+
 #MI {
-	left: 121px;
-	top: 171px;
-	position: absolute;
-	width: 70px;
-	height: 18px;
-	border-radius: 8px;
+	top: 275px;
 }
 
 #titulo {
-	left: 60px;
-	top: 145px;
+	left: 113px;
+	top: 240px;
 	position: absolute;
+	color: rgb(255,190,23);
+	width: 96px;
+	height: 20px;
+	border-radius: 8px;
+	border: 2px solid rgb(0,124,250);
+}
+
+#tituloModos {
+	left: 74px;
+	top: 82px;
+	position: absolute;
+	color: lime;
+	width: 136px;
+	height: 18px;
+	border-radius: 8px;
+	border: 2px solid rgb(0,124,250);
+}
+
+#marcoModos {
+	left: 75px;
+	top: 109px;
+	position: absolute;
+	width: 136px;
+	height: 114px;
+	border-radius: 8px;
+	border: 1px solid rgb(0,124,250);
+}
+
+.modo {
+	left: 82px;
+	position: absolute;
+	width: 120px;
+	height: 20px;
+	border-radius: 8px;
+	border: 2px solid rgb(80,80,80);
+	color: rgb(80,80,80);
+}
+
+#modo1 {
+	top: 116px;
+}
+
+#modo2 {
+	top: 142px;
+}
+
+#modo3 {
+	top: 168px;
+}
+
+#modo4 {
+	top: 194px;
+}
+
+#marcoTonalidades {
+	left: 113px;
+	top: 268px;
+	position: absolute;
+	color: rgb(0,160,255);
+	width: 96px;
+	height: 308px;
+	border-radius: 8px;
+	border: 1px solid rgb(0,124,250);
 }
 
 #encabezado {
@@ -331,16 +344,16 @@ body {
   	top: 42px;
   	position: absolute;
   	font-size: 22px;
-  	color: rgb(255, 187, 0 );
+  	color: rgb(110,255,255);
   	width: 450px;
   	text-align: center;
 }
 
 #marcador1 {
 	left: 165px;
-  	top: 120px;
+  	top: 130px;
   	position: absolute;
-  	font-size: 30px;
+  	font-size: 34px;
   	color: rgb(0, 180, 255 );
   	width: 450px;
   	text-align: center;
@@ -348,7 +361,7 @@ body {
 
 #marcador2 {
 	left: 120px;
-  	top: 124px;
+  	top: 136px;
   	position: absolute;
   	font-size: 24px;
   	color: rgb(150, 150, 150 );
@@ -358,10 +371,10 @@ body {
 
 #marcaColumna1 {
 	position: absolute;
-	left:458px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
+	left:461px;
+	top: 119px;
+	height: 18px;
+	width: 6px;
 }
 
 #marcaColumna2 {
