@@ -6,25 +6,24 @@
         <title>Div fantasmas</title>
         <script type="text/javascript" src="jquery-2.1.4.js"></script>
         <script type='text/javascript'>
-        $(document).ready(function(){
 
-  $("#grado1-1").hover(
-    function(){
-        //debugger
-        $("#gradop").appendTo("#grado1-1");
-        $("#gradop").css("position", "relative");
-        $("#gradop").css("left", 1);
-        $("#gradop").css("top", 1);
-    },
-    function(event){
-        $("#gradop").appendTo("body");
-        $("#gradop").css("position", "absolute");
-        $("#gradop").css("left", 10);
-        $("#gradop").css("top", 90);
-    }
-  );
-
-});
+    $(document).ready(function(){
+      $("#grado1-1").hover(
+        function(){
+            //debugger
+            $("#gradop").appendTo("#grado1-1");
+            $("#gradop").css("position", "relative");
+            $("#gradop").css("left", 1);
+            $("#gradop").css("top", 1);
+        },
+        function(event){
+            $("#gradop").appendTo("body");
+            $("#gradop").css("position", "absolute");
+            $("#gradop").css("left", 10);
+            $("#gradop").css("top", 90);
+        }
+      );
+    });
         </script>
         <style type="text/css">
         .active {

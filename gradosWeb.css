@@ -2,6 +2,7 @@ body {
     background-color: black;
     color: white;
     text-align: center;
+    font-family: "Futura", fantasy;
 }
 
 #pantprinc {
@@ -14,32 +15,52 @@ body {
 	margin-top: 20px; 
 }
 
-#fondosup {
-	left: 251px; 
+#fondosupA {
+	left: 291px; 
 	top: 40px;
 	position: absolute;
 }
 
-#fondoinf {
-	left: 251px; 
+#fondosupB {
+	left: 463px; 
+	top: 130px;
+	position: absolute;
+}
+
+#fondoinfA {
+	left: 291px; 
+	top: 456px;
+	position: absolute;
+}
+
+#fondoinfB {
+	left: 463px; 
 	top: 363px;
 	position: absolute;
 }
 
 #baseGrados {
-	left: 336px; 
+	left: 370px; 
 	top: 188px;
+	height: 254px;
 	position: absolute;
+	opacity: 0.65;
+    filter: alpha(opacity=65); /* For IE8 and earlier */
+}
+
+.grado {
+	left: 340px; 
+	position: absolute;
+	opacity: 0.75;
+    filter: alpha(opacity=75); /* For IE8 and earlier */
 }
 
 #grado1 {
-	left: 300px; 
 	top: 415px;
-	position: absolute;
 }
 
 #grado1-1 {
-	left: 449px; 
+	left: 489px; 
 	top: 414px;
 	position: absolute;
 	border: 1px dashed gray;
@@ -49,13 +70,11 @@ body {
 }
 
 #grado2 {
-	left: 300px; 
 	top: 383px;
-	position: absolute;
 }
 
 #grado2-1 {
-	left: 449px; 
+	left: 489px; 
 	top: 382px;
 	position: absolute;
 	border: 1px dashed gray;
@@ -65,12 +84,11 @@ body {
 }
 
 #grado3 {
-	left: 300px; 
 	top: 351px;
-	position: absolute;
 }
+
 #grado3-1 {
-	left: 449px; 
+	left: 489px; 
 	top: 350px;
 	position: absolute;
 	border: 1px dashed gray;
@@ -79,12 +97,11 @@ body {
 	height: 29px;
 }
 #grado4 {
-	left: 300px; 
 	top: 319px;
-	position: absolute;
 }
+
 #grado4-1 {
-	left: 449px; 
+	left: 489px; 
 	top: 318px;
 	position: absolute;
 	border: 1px dashed gray;
@@ -93,12 +110,11 @@ body {
 	height: 29px;
 }
 #grado5 {
-	left: 300px; 
 	top: 287px;
-	position: absolute;
 }
+
 #grado5-1 {
-	left: 449px; 
+	left: 489px; 
 	top: 286px;
 	position: absolute;
 	border: 1px dashed gray;
@@ -107,12 +123,10 @@ body {
 	height: 29px;
 }
 #grado6 {
-	left: 300px; 
 	top: 255px;
-	position: absolute;
 }
 #grado6-1 {
-	left: 449px; 
+	left: 489px; 
 	top: 254px;
 	position: absolute;
 	border: 1px dashed gray;
@@ -121,12 +135,10 @@ body {
 	height: 29px;
 }
 #grado7 {
-	left: 300px; 
 	top: 223px;
-	position: absolute;
 }
 #grado7-1 {
-	left: 449px; 
+	left: 489px; 
 	top: 222px;
 	position: absolute;
 	border: 1px dashed gray;
@@ -135,12 +147,10 @@ body {
 	height: 29px;
 }
 #grado8 {
-	left: 300px; 
 	top: 191px;
-	position: absolute;
 }
 #grado8-1 {
-	left: 449px; 
+	left: 489px; 
 	top: 190px;
 	position: absolute;
 	border: 1px dashed gray;
@@ -150,53 +160,61 @@ body {
 }
 
 #teclado {
-	left: 252px; 
+	left: 300px; 
 	top: 190px;
+	width: 76px;
+	height: 360px;
 	position: absolute;
-	opacity: 0.89;
-    filter: alpha(opacity=89); /* For IE8 and earlier */
+	opacity: 0.55;
+    filter: alpha(opacity=55); /* For IE8 and earlier */
+}
+
+#fondoTeclado {
+	left: 290px; 
+	top: 170px;
+	position: absolute;
 }
 
 #maskTeclado {
-	left: 216px; 
+	left: 256px; 
 	top: -10px;
 	position: absolute;
 }
 
 #gradop {
-	left: 915px; 
+	left: 955px; 
 	top: 140px;
 	position: absolute;
 	display: none;
 }
 
 #maskPanelTons {
-	left: 30px; 
+	left: 70px; 
 	top: 160px;
 	position: absolute;
 }
 
 #nuevosonido {
-	left: 517px;
+	left: 510px;
 	top: 520px;
 	position: absolute;
 	width: 90px;
 	height: 22px;
-	color: orange;
+	color: rgb(0,220,255);
 }
 
 #repetirsonido {
-	left: 620px;
-	top: 522px;
+	left: 610px;
+	top: 520px;
 	position: absolute;
 	width: 98px;
 	height: 20px;
-	color: yellow;
+	color: rgb(255,208,0);
 }
 
 #evaluar {
-	left: 730px;
-	top: 522px;
+	left: 735px;
+	top: 530px;
 	position: absolute;
 	width: 70px;
 	height: 20px;
@@ -204,276 +222,437 @@ body {
 }
 
 #oirtonalidad {
-	left: 360px;
-	top: 561px;
+	left: 290px;
+	top: 520px;
 	position: absolute;
 	width: 90px;
 	height: 18px;
-	color: rgb(0,235,255);
+	color: rgb(0,130,255);
 }
 
 .tonal {
-	left: 121px;
 	position: absolute;
 	width: 80px;
 	height: 18px;
 	border-radius: 8px;
-	border: 2px solid rgb(80,80,80);
-	color: rgb(80,80,80);
+	border: 2px solid rgb(60,60,60);
+	color: rgb(60,60,60);
+	font-size: 14px;
 }
 
 #FA {
-	top: 550px;
-}
-
-#FAs {
-	top: 525px;
-}
-
-#SOL {
-	top: 500px;
-}
-
-#LAb {
+	left: 177px;
 	top: 475px;
 }
 
+#FAs {
+	left: 91px;
+	top: 475px;
+}
+
+#SOL {
+	left: 5px;
+	top: 475px;
+}
+
+#LAb {
+	left: 177px;
+	top: 450px;
+}
+
 #LA {
+	left: 91px;
 	top: 450px;
 }
 
 #SIb {
-	top: 425px;
+	left: 5px;
+	top: 450px;
 }
 
 #SI {
-	top: 400px;
+	left: 177px;
+	top: 425px;
 }
 
 #DO {
-	top: 375px;
+	left: 91px;
+	top: 425px;
 }
 
 #DOs {
-	top: 350px;
+	left: 5px;
+	top: 425px;
 }
 
 #RE {
-	top: 325px;
+	left: 177px;
+	top: 400px;
 }
 
 #MIb {
-	top: 300px;
+	left: 91px;
+	top: 400px;
 }
 
 #MI {
-	top: 275px;
+	left: 5px;
+	top: 400px;
 }
 
 #titulo {
-	left: 113px;
-	top: 240px;
+	left: 95px;
+	top: 365px;
 	position: absolute;
-	color: rgb(255,190,23);
+	color: rgb(60,60,60);
 	width: 96px;
 	height: 20px;
+}
+
+#marcoTonalidades {
+	left: 0px;
+	top: 393px;
+	position: absolute;
+	width: 264px;
+	height: 108px;
 	border-radius: 8px;
-	border: 2px solid rgb(0,124,250);
+	border: 1px solid rgb(60,60,60);
 }
 
 #tituloModos {
 	left: 74px;
-	top: 82px;
+	top: 250px;
 	position: absolute;
-	color: lime;
+	color: rgb(60,60,60);
 	width: 136px;
 	height: 18px;
-	border-radius: 8px;
-	border: 2px solid rgb(0,124,250);
+	
 }
 
 #marcoModos {
-	left: 75px;
-	top: 109px;
+	left: 0px;
+	top: 275px;
 	position: absolute;
-	width: 136px;
-	height: 114px;
+	width: 264px;
+	height: 57px;
 	border-radius: 8px;
-	border: 1px solid rgb(0,124,250);
+	border: 1px solid rgb(60,60,60);
 }
 
 .modo {
-	left: 82px;
 	position: absolute;
-	width: 120px;
+	width: 122px;
 	height: 20px;
 	border-radius: 8px;
-	border: 2px solid rgb(80,80,80);
-	color: rgb(80,80,80);
+	border: 2px solid rgb(60,60,60);
+	color: rgb(60,60,60);
+	font-size: 14px;
 }
 
 #modo1 {
-	top: 116px;
+	left: 5px;
+	top: 280px;
 }
 
 #modo2 {
-	top: 142px;
+	left: 137px;
+	top: 280px;
 }
 
 #modo3 {
-	top: 168px;
+	left: 5px;
+	top: 305px;
 }
 
 #modo4 {
-	top: 194px;
+	left: 137px;
+	top: 305px;
 }
 
-#marcoTonalidades {
-	left: 113px;
-	top: 268px;
+.meta {
 	position: absolute;
-	color: rgb(0,160,255);
-	width: 96px;
-	height: 308px;
+	width: 36px;
+	height: 17px;
 	border-radius: 8px;
-	border: 1px solid rgb(0,124,250);
+	border: 2px solid rgb(60,60,60);
+	color: rgb(60,60,60);
+	font-size: 13px;
+}
+
+#meta {
+	left: 100px;
+	top: 110px;
+	position: absolute;
+	width: 58px;
+	height: 17px;
+	color: rgb(60,60,60);
+	font-size: 16px;
+}
+
+#marcoMeta {
+	left: 0px;
+	top: 135px;
+	position: absolute;
+	width: 264px;
+	height: 73px;
+	border-radius: 8px;
+	border: 2px solid rgb(60,60,60);
+}
+
+#meta1 {
+	left: 6px;
+	top: 140px;
+}
+
+#meta2 {
+	left: 49px;
+	top: 140px;
+}
+
+#meta3 {
+	left: 92px;
+	top: 140px;
+}
+
+#meta4 {
+	left: 135px;
+	top: 140px;
+}
+
+#meta5 {
+	left: 178px;
+	top: 140px;
+}
+
+#meta6 {
+	left: 222px;
+	top: 140px;
+}
+
+#meta7 {
+	left: 6px;
+	top: 163px;
+}
+
+#meta8 {
+	left: 49px;
+	top: 163px;
+}
+
+#meta9 {
+	left: 92px;
+	top: 163px;
+}
+
+#meta10 {
+	left: 135px;
+	top: 163px;
+}
+
+#meta11 {
+	left: 178px;
+	top: 163px;
+}
+
+#meta12 {
+	left: 222px;
+	top: 163px;
+}
+
+#meta13 {
+	left: 6px;
+	top: 186px;
+}
+
+#meta14 {
+	left: 49px;
+	top: 186px;
+}
+
+#meta15 {
+	left: 92px;
+	top: 186px;
+}
+
+#meta16 {
+	left: 135px;
+	top: 186px;
+}
+
+#meta17 {
+	left: 178px;
+	top: 186px;
+}
+
+#meta18 {
+	left: 222px;
+	top: 186px;
 }
 
 #encabezado {
-	left: 397px;
+	left: 437px;
   	top: 42px;
   	position: absolute;
-  	font-size: 22px;
-  	color: rgb(110,255,255);
+  	font-size: 20px;
+  	color: rgb(120, 130, 130);
   	width: 450px;
   	text-align: center;
 }
 
 #marcador1 {
-	left: 165px;
+	left: 400px;
   	top: 130px;
   	position: absolute;
   	font-size: 34px;
-  	color: rgb(0, 180, 255 );
-  	width: 450px;
+  	color: rgb(60,60,60);
+  	width: 40px;
   	text-align: center;
 }
 
 #marcador2 {
-	left: 120px;
+	left: 358px;
   	top: 136px;
   	position: absolute;
   	font-size: 24px;
-  	color: rgb(150, 150, 150 );
-  	width: 450px;
+  	color: rgb(60,60,60);
+  	width: 40px;
   	text-align: center;
 }
 
-#marcaColumna1 {
+.marca {
 	position: absolute;
-	left:461px;
-	top: 119px;
-	height: 18px;
-	width: 6px;
+	top: 106px;
+	height: 16px;
+	width: 8px;
+}
+
+#marcaColumna1 {
+	left:500px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna2 {
-	position: absolute;
-	left:498px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	left:540px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna3 {
-	position: absolute;
-	left:538px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	left:580px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna4 {
-	position: absolute;
-	left:578px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	left:620px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna5 {
-	position: absolute;
-	left:617px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	left:660px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna6 {
-	position: absolute;
-	left:656px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	left:700px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna7 {
-	position: absolute;
-	left:696px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	left:740px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna8 {
-	position: absolute;
-	left:736px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	left:780px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna9 {
-	position: absolute;
-	left:775px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	left:820px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna10 {
+	left:860px;
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+.numserie {
 	position: absolute;
-	left:815px;
-	top: 82px;
-	height: 35px;
-	width: 11px;
-	opacity: 0.2;
-    filter: alpha(opacity=20); /* For IE8 and earlier */
+	top: 78px;
+	font-size: 22px;
+  	color: rgb(50, 50, 50 );
+  	width: 25px;
+  	text-align: center;
+}
+
+#tituloSerie {
+	position: absolute;
+	top: 80px;
+	left: 330px;
+	width: 160px;
+	height: 20px;
+	background-color: rgb(20,20,20);
+	color: rgb(40,40,40);
+}
+
+#uno {
+	left:491px;
+}
+
+#dos {
+	left:531px;
+}
+
+#tres {
+	left:571px;
+}
+
+#cuatro {
+	left:611px;
+}
+
+#cinco {
+	left:651px;
+}
+
+#seis {
+	left:691px;
+}
+
+#siete {
+	left:731px;
+}
+
+#ocho {
+	left:771px;
+}
+
+#nueve {
+	left:811px;
+}
+
+#diez {
+	left:851px;
 }
 
 #sombraGrados {
 	position: absolute;
 	display: none;
-	left:380px;
+	left:420px;
 	top: 252px;
-	height: 32px;
+	height: 29px;
 	width: 100px;
-	opacity: 0.34;
-    filter: alpha(opacity=34); /* For IE8 and earlier */
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
 }
+
