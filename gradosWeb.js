@@ -436,6 +436,8 @@ function activarHover(lista1Objetos, lista2Objetos) {
 //ENTRADA
 function titulo1() {
 	$("#encabezado").text("Escoge un número en Tamaño de la serie:");
+	$("#fondoEntrada").css("width", 0);
+	$("#fondoEntrada").css("height", 0);
 	setTimeout(seleccionarTamañoSerie, 500);
 }
 //Primer estado, seleccionar tamaño de la serie
@@ -643,7 +645,7 @@ function mostrarMenuEscala() {
 }
 
 function ajustarModo(obj) {
-	cargarModo()
+	cargarModo();
 	$(".modo").css('border', "2px solid rgb(60,60,60)"); // asi se llama una clase de objetos.
 	$(".modo").css('color', "rgb(60,60,60)");
 	$(obj).css('border', "2px solid rgb(210,100,20)");
@@ -686,6 +688,75 @@ function esperarTocarGrado(grado, tocar, ver, lapso, funDespues) {
 	f();
 }
 
+function iluminar(obj, num) {
+	var f = function() {
+		if (num < 1) {
+			num = num + 0.1;
+			$(obj).css("opacity", num);
+			setTimeout(f,60);
+		};
+	}
+	f();
+}
+
+function apagar(obj, num) {
+	var f = function() {
+		if (num > 0) {
+			num = num - 0.1;
+			$(obj).css("opacity", num);
+			setTimeout(f,60);
+		};
+	}
+	f();
+}
+
+function portada1() {
+	iluminar("#portada1", 0);
+}
+function portada2() {
+	iluminar("#portada2", 0);
+}
+function portada3() {
+	iluminar("#portada3", 0);
+}
+
+function creditos1() {
+	iluminar("#creditos1", 0);
+}
+function creditos2() {
+	iluminar("#creditos2", 0);
+}
+function creditos3() {
+	iluminar("#creditos3", 0);
+}
+function creditos4() {
+	iluminar("#creditos4", 0);
+}
+function creditos5() {
+	iluminar("#creditos5", 0);
+}
+function creditos6() {
+	iluminar("#creditos6", 0);
+}
+function boton1() {
+	estado = 30; // Cerrar portada y entrar al programa
+	$("#boton1").css("color", "rgb(90,90,90)");
+	$("#boton1").css("border", "2px solid rgb(90,90,90)");
+}
+
+function cerrarPortada() {
+	apagar("#fondoEntrada", 1.0);
+	$("#boton1").css("color", "rgb(0,0,0)"); // esconde boton ENTRAR
+	$("#boton1").css("border", "");
+	$("#boton1").text("");
+	$("#boton1").css("top", 0);
+	$("#boton1").css("left", 0);
+	$(".portada").css("top", 0);
+	$(".portada").css("left", 0);
+	$(".portada").css("width", 0);
+	$(".portada").css("height", 0);
+	setTimeout(titulo1, 300);
+}
 function oirArpegio(num) {
 	nota = 0;
 	var f = function() {
@@ -741,6 +812,29 @@ function iluminarOpacarGrado(num, obj, luz) {
 
 function inicio() {
 	iniGrados();
+
+	$("#boton1").on( "mouseenter", function() {
+		if (estado == 30) {
+			$("#boton1").css("color", "rgb(0,100,255)");
+			$("#boton1").css("border", "2px solid rgb(210,100,20)");
+		}
+	});
+
+	$("#boton1").on( "mouseleave", function() {
+		if (estado == 30) {
+			$("#boton1").css("color", "rgb(90,90,90)");
+			$("#boton1").css("border", "2px solid rgb(90,90,90)");
+		}
+	});
+
+	$("#boton1").on("click", "", function () {
+		if (estado == 30) {
+			estado = 31;
+			apagar(".portada", 1.0);
+			setTimeout(cerrarPortada, 1000);
+		}
+	});
+
 
 	$("#nuevosonido").on( "mouseover", function() {
 		$("#nuevosonido").unbind("mouseenter mouseleave");
@@ -1191,6 +1285,15 @@ function inicio() {
 		}
 	});
 	
-	setTimeout(titulo1, 800); // Estado inicial del juego.
+	setTimeout(portada1, 400); //Inicia presentación del programa
+	setTimeout(portada2, 1400);
+	setTimeout(portada3, 2400);
+	setTimeout(creditos1, 3400); 
+	setTimeout(creditos2, 4400); 
+	setTimeout(creditos3, 5400); 
+	setTimeout(creditos4, 6400); 
+	setTimeout(creditos5, 7400); 
+	setTimeout(creditos6, 8400);
+	setTimeout(boton1, 9400); 
 }
 
