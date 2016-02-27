@@ -65,6 +65,13 @@ body {
 	top: 290px;
 }
 
+#dcreditos4 {
+	position: absolute;
+	left: 100px; 
+	top: 300px;
+	color: black;
+}
+
 #creditos5 {
 	position: absolute;
 	left: 100px; 
@@ -138,105 +145,434 @@ body {
 	top: 415px;
 }
 
-#grado1-1 {
-	left: 489px; 
-	top: 414px;
-	position: absolute;
-	border: 1px dashed gray;
-	border-radius: 100%;
-	width: 29px;
-	height: 29px;
-}
-
 #grado2 {
 	top: 383px;
-}
-
-#grado2-1 {
-	left: 489px; 
-	top: 382px;
-	position: absolute;
-	border: 1px dashed gray;
-	border-radius: 100%;
-	width: 29px;
-	height: 29px;
 }
 
 #grado3 {
 	top: 351px;
 }
 
-#grado3-1 {
-	left: 489px; 
-	top: 350px;
-	position: absolute;
-	border: 1px dashed gray;
-	border-radius: 100%;
-	width: 29px;
-	height: 29px;
-}
 #grado4 {
 	top: 319px;
 }
 
-#grado4-1 {
-	left: 489px; 
-	top: 318px;
-	position: absolute;
-	border: 1px dashed gray;
-	border-radius: 100%;
-	width: 29px;
-	height: 29px;
-}
 #grado5 {
 	top: 287px;
 }
 
-#grado5-1 {
-	left: 489px; 
-	top: 286px;
-	position: absolute;
-	border: 1px dashed gray;
-	border-radius: 100%;
-	width: 29px;
-	height: 29px;
-}
 #grado6 {
 	top: 255px;
 }
-#grado6-1 {
-	left: 489px; 
-	top: 254px;
-	position: absolute;
-	border: 1px dashed gray;
-	border-radius: 100%;
-	width: 29px;
-	height: 29px;
-}
+
 #grado7 {
 	top: 223px;
 }
-#grado7-1 {
-	left: 489px; 
-	top: 222px;
-	position: absolute;
-	border: 1px dashed gray;
-	border-radius: 100%;
-	width: 29px;
-	height: 29px;
-}
+
 #grado8 {
 	top: 191px;
 }
-#grado8-1 {
-	left: 489px; 
-	top: 190px;
+
+.g1 {
 	position: absolute;
-	border: 1px dashed gray;
+	left: 489px; 
 	border-radius: 100%;
 	width: 29px;
 	height: 29px;
 }
+
+#grado1-1 {
+	top: 414px;
+}
+
+#grado2-1 {
+	top: 382px;
+}
+
+#grado3-1 {
+	top: 350px;
+}
+
+#grado4-1 {
+	top: 318px;
+}
+
+#grado5-1 {
+	top: 286px;
+}
+
+#grado6-1 {
+	top: 254px;
+}
+
+#grado7-1 {
+	top: 222px;
+}
+
+#grado8-1 {
+	top: 190px;
+}
+
+.g2 {
+	position: absolute;
+	left: 528px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-2 {
+	top: 414px;
+}
+
+#grado2-2 {
+	top: 382px;
+}
+
+#grado3-2 {
+	top: 350px;
+}
+
+#grado4-2 {
+	top: 318px;
+}
+
+#grado5-2 {
+	top: 286px;
+}
+
+#grado6-2 {
+	top: 254px;
+}
+
+#grado7-2 {
+	top: 222px;
+}
+
+#grado8-2 {
+	top: 190px;
+}
+
+.g3 {
+	position: absolute;
+	left: 567px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-3 {
+	top: 414px;
+}
+
+#grado2-3 {
+	top: 382px;
+}
+
+#grado3-3 {
+	top: 350px;
+}
+
+#grado4-3 {
+	top: 318px;
+}
+
+#grado5-3 {
+	top: 286px;
+}
+
+#grado6-3 {
+	top: 254px;
+}
+
+#grado7-3 {
+	top: 222px;
+}
+
+#grado8-3 {
+	top: 190px;
+}
+
+.g4 {
+	position: absolute;
+	left: 606px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-4 {
+	top: 414px;
+}
+
+#grado2-4 {
+	top: 382px;
+}
+
+#grado3-4 {
+	top: 350px;
+}
+
+#grado4-4 {
+	top: 318px;
+}
+
+#grado5-4 {
+	top: 286px;
+}
+
+#grado6-4 {
+	top: 254px;
+}
+
+#grado7-4 {
+	top: 222px;
+}
+
+#grado8-4 {
+	top: 190px;
+}
+
+.g5 {
+	position: absolute;
+	left: 645px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-5 {
+	top: 414px;
+}
+
+#grado2-5 {
+	top: 382px;
+}
+
+#grado3-5 {
+	top: 350px;
+}
+
+#grado4-5 {
+	top: 318px;
+}
+
+#grado5-5 {
+	top: 286px;
+}
+
+#grado6-5 {
+	top: 254px;
+}
+
+#grado7-5 {
+	top: 222px;
+}
+
+#grado8-5 {
+	top: 190px;
+}
+
+.g6 {
+	position: absolute;
+	left: 684px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-6 {
+	top: 414px;
+}
+
+#grado2-6 {
+	top: 382px;
+}
+
+#grado3-6 {
+	top: 350px;
+}
+
+#grado4-6 {
+	top: 318px;
+}
+
+#grado5-6 {
+	top: 286px;
+}
+
+#grado6-6 {
+	top: 254px;
+}
+
+#grado7-6 {
+	top: 222px;
+}
+
+#grado8-6 {
+	top: 190px;
+}
+
+.g7 {
+	position: absolute;
+	left: 723px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-7 {
+	top: 414px;
+}
+
+#grado2-7 {
+	top: 382px;
+}
+
+#grado3-7 {
+	top: 350px;
+}
+
+#grado4-7 {
+	top: 318px;
+}
+
+#grado5-7 {
+	top: 286px;
+}
+
+#grado6-7 {
+	top: 254px;
+}
+
+#grado7-7 {
+	top: 222px;
+}
+
+#grado8-7 {
+	top: 190px;
+}
+
+.g8 {
+	position: absolute;
+	left: 762px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-8 {
+	top: 414px;
+}
+
+#grado2-8 {
+	top: 382px;
+}
+
+#grado3-8 {
+	top: 350px;
+}
+
+#grado4-8 {
+	top: 318px;
+}
+
+#grado5-8 {
+	top: 286px;
+}
+
+#grado6-8 {
+	top: 254px;
+}
+
+#grado7-8 {
+	top: 222px;
+}
+
+#grado8-8 {
+	top: 190px;
+}
+
+.g9 {
+	position: absolute;
+	left: 801px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-9 {
+	top: 414px;
+}
+
+#grado2-9 {
+	top: 382px;
+}
+
+#grado3-9 {
+	top: 350px;
+}
+
+#grado4-9 {
+	top: 318px;
+}
+
+#grado5-9 {
+	top: 286px;
+}
+
+#grado6-9 {
+	top: 254px;
+}
+
+#grado7-9 {
+	top: 222px;
+}
+
+#grado8-9 {
+	top: 190px;
+}
+
+.g10 {
+	position: absolute;
+	left: 840px; 
+	border-radius: 100%;
+	width: 29px;
+	height: 29px;
+}
+
+#grado1-10 {
+	top: 414px;
+}
+
+#grado2-10 {
+	top: 382px;
+}
+
+#grado3-10 {
+	top: 350px;
+}
+
+#grado4-10 {
+	top: 318px;
+}
+
+#grado5-10 {
+	top: 286px;
+}
+
+#grado6-10 {
+	top: 254px;
+}
+
+#grado7-10 {
+	top: 222px;
+}
+
+#grado8-10 {
+	top: 190px;
+}
+
 
 #teclado {
 	left: 300px; 
@@ -260,9 +596,18 @@ body {
 	position: absolute;
 }
 
-#gradop {
+#sombraGradop {
+	position: absolute;
+	left: 490px;
+	top: 145px;
+	width: 29px;
+	height: 300px;
+	display: none;
+}
+
+.gp {
 	left: 955px; 
-	top: 140px;
+	top: 145px;
 	position: absolute;
 	display: none;
 }
@@ -274,39 +619,43 @@ body {
 }
 
 #nuevosonido {
-	left: 510px;
+	left: 520px;
 	top: 520px;
 	position: absolute;
-	width: 90px;
-	height: 22px;
+	width: 65px;
+	height: 44px;
 	color: rgb(0,220,255);
+	border-radius: 5px;
 }
 
 #repetirsonido {
-	left: 610px;
+	left: 625px;
 	top: 520px;
 	position: absolute;
-	width: 98px;
-	height: 20px;
+	width: 72px;
+	height: 43px;
 	color: rgb(255,208,0);
+	border-radius: 5px;
 }
 
 #evaluar {
 	left: 735px;
 	top: 530px;
 	position: absolute;
-	width: 70px;
-	height: 20px;
+	width: 72px;
+	height: 24px;
 	color: lime;
+	border-radius: 5px;
 }
 
 #oirtonalidad {
-	left: 290px;
+	left: 296px;
 	top: 520px;
 	position: absolute;
 	width: 90px;
-	height: 18px;
+	height: 43px;
 	color: rgb(0,130,255);
+	border-radius: 5px;
 }
 
 .tonal {
@@ -320,7 +669,7 @@ body {
 }
 
 #FA {
-	left: 177px;
+	left: 5px;
 	top: 475px;
 }
 
@@ -330,12 +679,12 @@ body {
 }
 
 #SOL {
-	left: 5px;
+	left: 177px;
 	top: 475px;
 }
 
 #LAb {
-	left: 177px;
+	left: 5px;
 	top: 450px;
 }
 
@@ -345,12 +694,12 @@ body {
 }
 
 #SIb {
-	left: 5px;
+	left: 177px;
 	top: 450px;
 }
 
 #SI {
-	left: 177px;
+	left: 5px;
 	top: 425px;
 }
 
@@ -360,12 +709,12 @@ body {
 }
 
 #DOs {
-	left: 5px;
+	left: 177px;
 	top: 425px;
 }
 
 #RE {
-	left: 177px;
+	left: 5px;
 	top: 400px;
 }
 
@@ -375,7 +724,7 @@ body {
 }
 
 #MI {
-	left: 5px;
+	left: 177px;
 	top: 400px;
 }
 
@@ -473,7 +822,7 @@ body {
 	top: 135px;
 	position: absolute;
 	width: 264px;
-	height: 73px;
+	height: 74px;
 	border-radius: 8px;
 	border: 2px solid rgb(60,60,60);
 }
@@ -569,13 +918,13 @@ body {
 }
 
 #encabezado {
-	left: 437px;
+	left: 10px;
   	top: 42px;
   	position: absolute;
   	font-size: 20px;
   	color: rgb(120, 130, 130);
   	width: 450px;
-  	text-align: center;
+  	text-align: left;
 }
 
 #marcador1 {
@@ -612,55 +961,55 @@ body {
 }
 
 #marcaColumna2 {
-	left:540px;
+	left:539px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna3 {
-	left:580px;
+	left:578px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna4 {
-	left:620px;
+	left:617px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna5 {
-	left:660px;
+	left:656px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna6 {
-	left:700px;
+	left:695px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna7 {
-	left:740px;
+	left:734px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna8 {
-	left:780px;
+	left:773px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna9 {
-	left:820px;
+	left:812px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 #marcaColumna10 {
-	left:860px;
+	left:851px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
@@ -669,15 +1018,16 @@ body {
 	position: absolute;
 	top: 78px;
 	font-size: 22px;
-  	color: rgb(50, 50, 50 );
-  	width: 25px;
-  	text-align: center;
+  	color: rgb(60, 60, 60 );
+  	width: 39px;
+  	text-align: left;
+  	padding-left: 7px;
 }
 
 #tituloSerie {
 	position: absolute;
 	top: 80px;
-	left: 330px;
+	left: 325px;
 	width: 160px;
 	height: 20px;
 	background-color: rgb(20,20,20);
@@ -689,49 +1039,76 @@ body {
 }
 
 #dos {
-	left:531px;
+	left:530px;
 }
 
 #tres {
-	left:571px;
+	left:569px;
 }
 
 #cuatro {
-	left:611px;
+	left:608px;
 }
 
 #cinco {
-	left:651px;
+	left:647px;
 }
 
 #seis {
-	left:691px;
+	left:686px;
 }
 
 #siete {
-	left:731px;
+	left:725px;
 }
 
 #ocho {
-	left:771px;
+	left:764px;
 }
 
 #nueve {
-	left:811px;
+	left:803px;
 }
 
 #diez {
-	left:851px;
+	left:842px;
+	padding-left: 0px;
 }
 
-#sombraGrados {
+.sgp {
 	position: absolute;
 	display: none;
-	left:420px;
+	left:426px;
 	top: 252px;
 	height: 29px;
-	width: 100px;
+	width: 94px;
 	opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
-
+#sombraGrado2 {
+	width: 133px;
+}
+#sombraGrado3 {
+	width: 172px;
+}
+#sombraGrado4 {
+	width: 211px;
+}
+#sombraGrado5 {
+	width: 250px;
+}
+#sombraGrado6 {
+	width: 299px;
+}
+#sombraGrado7 {
+	width: 338px;
+}
+#sombraGrado8 {
+	width: 377px;
+}
+#sombraGrado9 {
+	width: 416px;
+}
+#sombraGrado10 {
+	width: 455px;
+}

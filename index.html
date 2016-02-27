@@ -76,8 +76,8 @@
         <div class="modo" id="modo3">Menor natural</div>
         <div class="modo" id="modo4">Menor melódica</div>
 
-        <div id="nuevosonido">Nuevo sonido</div>
-        <div id="repetirsonido">Repetir sonido</div>
+        <div id="nuevosonido"></div>
+        <div id="repetirsonido"></div>
         <div id="evaluar">Evaluar</div>
         <div id="oirtonalidad">Oir tonalidad</div>
         <div id="marcador1">0</div>
@@ -106,18 +106,118 @@
         <div class="numserie" id="nueve">9</div>
         <div class="numserie" id="diez">10</div>
 
-        <img id="sombraGrados" src="mask2b.png">
+        <img class="sgp" id="sombraGrado1" src="mask2b.png">
+        <img class="sgp" id="sombraGrado2" src="mask2b.png">
+        <img class="sgp" id="sombraGrado3" src="mask2b.png">
+        <img class="sgp" id="sombraGrado4" src="mask2b.png">
+        <img class="sgp" id="sombraGrado5" src="mask2b.png">
+        <img class="sgp" id="sombraGrado6" src="mask2b.png">
+        <img class="sgp" id="sombraGrado7" src="mask2b.png">
+        <img class="sgp" id="sombraGrado8" src="mask2b.png">
+        <img class="sgp" id="sombraGrado9" src="mask2b.png">
+        <img class="sgp" id="sombraGrado10" src="mask2b.png">
+        <img id="sombraGradop" src="sombraGradop.png">
 
-        <div class="g1" id="grado1-1"></div>
-        <div class="g1" id="grado2-1"></div>
-        <div class="g1" id="grado3-1"></div>
-        <div class="g1" id="grado4-1"></div>
-        <div class="g1" id="grado5-1"></div>
-        <div class="g1" id="grado6-1"></div>
-        <div class="g1" id="grado7-1"></div>
-        <div class="g1" id="grado8-1"></div>
+        <div class="g1 gris" id="grado1-1"></div>
+        <div class="g1 gris" id="grado2-1"></div>
+        <div class="g1 gris" id="grado3-1"></div>
+        <div class="g1 gris" id="grado4-1"></div>
+        <div class="g1 gris" id="grado5-1"></div>
+        <div class="g1 gris" id="grado6-1"></div>
+        <div class="g1 gris" id="grado7-1"></div>
+        <div class="g1 gris" id="grado8-1"></div>
 
-        <img id="gradop" src="gradop.png" draggable="true">
+        <div class="g2 gris" id="grado1-2"></div>
+        <div class="g2 gris" id="grado2-2"></div>
+        <div class="g2 gris" id="grado3-2"></div>
+        <div class="g2 gris" id="grado4-2"></div>
+        <div class="g2 gris" id="grado5-2"></div>
+        <div class="g2 gris" id="grado6-2"></div>
+        <div class="g2 gris" id="grado7-2"></div>
+        <div class="g2 gris" id="grado8-2"></div>
+
+        <div class="g3 gris" id="grado1-3"></div>
+        <div class="g3 gris" id="grado2-3"></div>
+        <div class="g3 gris" id="grado3-3"></div>
+        <div class="g3 gris" id="grado4-3"></div>
+        <div class="g3 gris" id="grado5-3"></div>
+        <div class="g3 gris" id="grado6-3"></div>
+        <div class="g3 gris" id="grado7-3"></div>
+        <div class="g3 gris" id="grado8-3"></div>
+
+        <div class="g4 gris" id="grado1-4"></div>
+        <div class="g4 gris" id="grado2-4"></div>
+        <div class="g4 gris" id="grado3-4"></div>
+        <div class="g4 gris" id="grado4-4"></div>
+        <div class="g4 gris" id="grado5-4"></div>
+        <div class="g4 gris" id="grado6-4"></div>
+        <div class="g4 gris" id="grado7-4"></div>
+        <div class="g4 gris" id="grado8-4"></div>
+
+        <div class="g5 gris" id="grado1-5"></div>
+        <div class="g5 gris" id="grado2-5"></div>
+        <div class="g5 gris" id="grado3-5"></div>
+        <div class="g5 gris" id="grado4-5"></div>
+        <div class="g5 gris" id="grado5-5"></div>
+        <div class="g5 gris" id="grado6-5"></div>
+        <div class="g5 gris" id="grado7-5"></div>
+        <div class="g5 gris" id="grado8-5"></div>
+
+        <div class="g6 gris" id="grado1-6"></div>
+        <div class="g6 gris" id="grado2-6"></div>
+        <div class="g6 gris" id="grado3-6"></div>
+        <div class="g6 gris" id="grado4-6"></div>
+        <div class="g6 gris" id="grado5-6"></div>
+        <div class="g6 gris" id="grado6-6"></div>
+        <div class="g6 gris" id="grado7-6"></div>
+        <div class="g6 gris" id="grado8-6"></div>
+
+        <div class="g7 gris" id="grado1-7"></div>
+        <div class="g7 gris" id="grado2-7"></div>
+        <div class="g7 gris" id="grado3-7"></div>
+        <div class="g7 gris" id="grado4-7"></div>
+        <div class="g7 gris" id="grado5-7"></div>
+        <div class="g7 gris" id="grado6-7"></div>
+        <div class="g7 gris" id="grado7-7"></div>
+        <div class="g7 gris" id="grado8-7"></div>
+
+        <div class="g8 gris" id="grado1-8"></div>
+        <div class="g8 gris" id="grado2-8"></div>
+        <div class="g8 gris" id="grado3-8"></div>
+        <div class="g8 gris" id="grado4-8"></div>
+        <div class="g8 gris" id="grado5-8"></div>
+        <div class="g8 gris" id="grado6-8"></div>
+        <div class="g8 gris" id="grado7-8"></div>
+        <div class="g8 gris" id="grado8-8"></div>
+
+        <div class="g9 gris" id="grado1-9"></div>
+        <div class="g9 gris" id="grado2-9"></div>
+        <div class="g9 gris" id="grado3-9"></div>
+        <div class="g9 gris" id="grado4-9"></div>
+        <div class="g9 gris" id="grado5-9"></div>
+        <div class="g9 gris" id="grado6-9"></div>
+        <div class="g9 gris" id="grado7-9"></div>
+        <div class="g9 gris" id="grado8-9"></div>
+
+        <div class="g10 gris" id="grado1-10"></div>
+        <div class="g10 gris" id="grado2-10"></div>
+        <div class="g10 gris" id="grado3-10"></div>
+        <div class="g10 gris" id="grado4-10"></div>
+        <div class="g10 gris" id="grado5-10"></div>
+        <div class="g10 gris" id="grado6-10"></div>
+        <div class="g10 gris" id="grado7-10"></div>
+        <div class="g10 gris" id="grado8-10"></div>
+
+        <img class="gp" id="gradop1" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop2" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop3" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop4" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop5" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop6" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop7" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop8" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop9" src="gradop.png" draggable="true">
+        <img class="gp" id="gradop10" src="gradop.png" draggable="true">
 
         <img id="fondoEntrada" src="portadaFondo.png">
         <img class="portada" id="portada1" src="portada1.png">

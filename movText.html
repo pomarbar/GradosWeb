@@ -1,0 +1,42 @@
+<html>
+<head>
+   <meta charset="utf-8" />
+   <title>Ejemplo de texto en movimiento</title>
+</head>
+
+<body>
+<h2>Texto animado, ejemplo.</h2>
+
+<div id="divTexto"></div>
+
+<script language="javascript">
+
+//variable con la posicion en el texto. poner siempre a 0
+var pos = 0;
+//variable con el texto a mostrar
+var texto = "'Porque de tal manera amó Dios al mundo, que dió a su Hijo unigénito...'";
+// donde se va a mostrar el texto
+var miDiv = "divTexto";
+// tempo de aparición del texto
+var vel = 100;
+
+//creo una funcion para cambiar el texto
+function animarTexto(){
+   //incremento la posicion en 1 y extraigo el texto a mostrar en este momento.
+   pos = pos + 1;
+   var textoActual = texto.substring(0,pos);
+   //capturo el div donde se pone el texto
+   var t = document.getElementById(miDiv);
+   t.textContent = textoActual;
+   //controla la cantidad de veces que se llama a la funcion 'animarTexto'
+   if (pos <= texto.length){
+      //llama varias veces a la función 'animarTexto'
+      setTimeout(animarTexto,vel);
+   }
+};
+//llamo a la función para poner el texto en movimiento
+animarTexto();
+</script>
+
+</body>
+</html>

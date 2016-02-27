@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Prueba Texto animado</title>
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+</head>
+<body>
+   <div id="miDiv"></div>
+    <script type="text/javascript" >
+    
+      //variable con la posicion en el texto. poner siempre a 0
+      var pos = 0;
+      //variable con el texto a mostrar
+      var texto = "Todo lo puedo en Cristo que me fortalece";
+      // donde se va a mostrar el texto
+      var miDiv = "miDiv";
+      // tempo de aparición del texto
+      var vel = 50;
+
+      //creo una funcion para cambiar el texto
+      function animarTexto(){
+         //incremento la posicion en 1 y extraigo el texto a mostrar en este momento.
+         pos = pos + 1;
+         var textoActual = texto.substring(0,pos);
+         //capturo el div donde se pone el texto
+         var t = document.getElementById(miDiv);
+         t.textContent = textoActual;
+         //controla la cantidad de veces que se llama a la funcion 'animarTexto'
+         if (pos <= texto.length){
+            //llama varias veces a la función 'animarTexto'
+            setTimeout(animarTexto,vel);
+         }
+      };
+
+      animarTexto();
+
+   var myVar = "Prueba de una matriz multidimensional;";
+   var nb = 4; 
+   var a = new Array(nb); // crea una matriz de longitud 4
+   for (var i = 0; i < nb; i++) {
+      a[i] = new Array(nb); // define cada elemento como una matriz de longitud 4
+      // for (var j = 0; j < nb; j++) {
+        a[i] = "[" + i + "," + i + "]"; // asigna a cada elemento de la matriz bidimensional 
+      //                                    // los valores de i y j
+      //}
+   }
+
+   </script>
+</body>
+</html>

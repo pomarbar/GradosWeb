@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.01"
-     inkscape:cx="385.28273"
-     inkscape:cy="690.03264"
+     inkscape:cx="408.31477"
+     inkscape:cy="412.80492"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -53,35 +53,36 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g3346"
-       transform="translate(18.914018,-527.74883)"
+       id="g4412"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <text
          transform="scale(1.005727,0.99430561)"
          sodipodi:linespacing="125%"
          id="text3336"
-         y="746.19543"
-         x="184.31609"
+         y="215.42418"
+         x="203.12241"
          style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:39.77222443px;line-height:125%;font-family:Futura;-inkscape-font-specification:'Futura, Medium';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5599ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><tspan
-           y="746.19543"
-           x="184.31609"
+           y="215.42418"
+           x="203.12241"
            id="tspan3338"
-           sodipodi:role="line">GRADOS WEB 2015</tspan></text>
+           sodipodi:role="line">GRADOS <tspan
+   id="tspan4260"
+   style="fill:#646464;fill-opacity:1">WEB</tspan> 2015</tspan></text>
       <text
          transform="scale(1.005727,0.99430561)"
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:39.77222443px;line-height:125%;font-family:Futura;-inkscape-font-specification:'Futura, Medium';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="187.33597"
-         y="744.98395"
+         x="206.14229"
+         y="214.21269"
          id="text3342"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan3344"
-           x="187.33597"
-           y="744.98395">GRADOS <tspan
-   style="fill:#c87137"
+           x="206.14229"
+           y="214.21269">GRADOS <tspan
+   style="fill:#803300"
    id="tspan4243">WEB</tspan> 2015</tspan></text>
     </g>
     <g
@@ -166,26 +167,28 @@
          sodipodi:role="line"
          x="414.15591"
          y="422.2959"
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:17.5px;line-height:125%;font-family:Futura;-inkscape-font-specification:'Futura, Medium Condensed';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#6f7c91">Asesor de  programación</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:17.5px;line-height:125%;font-family:Futura;-inkscape-font-specification:'Futura, Medium Condensed';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#6f7c91">Asesoría en programación</tspan></text>
     <g
        style="fill:#c87137"
        id="g3428"
-       transform="translate(168.52684,-253.28974)"
+       transform="translate(-110.68108,-388.9333)"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <text
          transform="scale(1.005727,0.99430561)"
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;line-height:125%;font-family:Futura;-inkscape-font-specification:'Futura, Medium';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#c87137;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="245.80103"
-         y="707.88525"
+         x="529.32581"
+         y="843.30988"
          id="text3430"
-         sodipodi:linespacing="125%"><tspan
+         sodipodi:linespacing="125%"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90"><tspan
            id="tspan3432"
            sodipodi:role="line"
-           x="245.80103"
-           y="707.88525"
-           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:17.5px;line-height:125%;font-family:Futura;-inkscape-font-specification:'Futura, Medium Condensed';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#c87137">Vladimir Támara</tspan></text>
+           x="529.32581"
+           y="843.30988"
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:17.5px;line-height:125%;font-family:Futura;-inkscape-font-specification:'Futura, Medium Condensed';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#c87137">Escuela de formación pasos de Jesús</tspan></text>
     </g>
     <text
        sodipodi:linespacing="125%"

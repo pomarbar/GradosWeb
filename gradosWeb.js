@@ -3,7 +3,7 @@
 // Autor: Pedro Omar Baracaldo R. profesor asociado, departamento de música, Universidad de los Andes
 // email: pbaracal@uniandes.edu.co
 
-var listaGrados = [];
+var tonalidadUsuario = [];
 var tonMayor = [0,2,4,5,7,9,11,12];
 var tonMenorNatural = [0,2,3,5,7,8,10,12];
 var tonMenorArmonica = [0,2,3,5,7,8,11,12];
@@ -16,37 +16,38 @@ var modo = 0; // variable para cargar el modo correspondiente: 0 = Mayor, 1 = me
 var nomtonMayor = ['FA Mayor','FA# Mayor','SOL Mayor','LAb Mayor','LA Mayor','SIb Mayor','SI Mayor','DO Mayor','DO# Mayor','RE Mayor','MIb Mayor','MI Mayor'];
 var listaSonidos = ['Fa3.mp3','Fas3.mp3','Sol3.mp3','Lab3.mp3','La3.mp3','Sib3.mp3','Si3.mp3','Do4.mp3','Dos4.mp3','Re4.mp3','Mib4.mp3','Mi4.mp3','Fa4.mp3','Fas4.mp3','Sol4.mp3','Lab4.mp3','La4.mp3','Sib4.mp3','Si4.mp3','Do5.mp3','Dos5.mp3','Re5.mp3','Mib5.mp3','Mi5.mp3'];
 var mover = false;
+var nombresMarca = ["#marcaColumna1","#marcaColumna2","#marcaColumna3","#marcaColumna4","#marcaColumna5","#marcaColumna6","#marcaColumna7","#marcaColumna8","#marcaColumna9","#marcaColumna10"];
 var teclas = ['tecla1.png','tecla2.png','tecla3.png','tecla4.png','tecla5.png','tecla6.png','tecla7.png','tecla8.png','tecla9.png','tecla10.png','tecla11.png','tecla12.png','tecla13.png','tecla14.png','tecla15.png','tecla16.png','tecla17.png','tecla18.png','tecla19.png','tecla20.png','tecla21.png','tecla22.png','tecla23.png','tecla24.png'];
 var coordsTeclado = [60,73,86,99,112,125,138,164,177,190,203,216];
 var idTonalidades = ["#FA", "#FAs", "#SOL", "#LAb", "#LA", "#SIb", "#SI", "#DO", "#DOs", "#RE", "#MIb", "#MI"];
 var gradoGrafs = ["grado1.png","grado2.png","grado3.png","grado4.png","grado5.png","grado6.png","grado7.png","grado8.png","gradop.png"];
 var posMarcasSerie = [458, 498, 538, 578, 617, 656, 696, 736, 775, 815];
-var tamañoSerie = 0;
-var respuestasGrados = [0,0,0,0,0,0,0,0];
 var grado = 0;
-var gradoSelUsuario = 10;
-var posGradop = 0; // guarda posición de gradop cuando el usuario hace click en gradop y queda fijo frente a algún grado
+var listaGrados = [];
+var posgradop = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]; // guarda posición de gradop cuando el usuario hace click en gradop1 y queda fijo frente a algún grado
 var meta = 0; // cantidad de ejercicios
 var nota = 0;
 var audioElement = null;
 var arpegio = [0,2,4,7];
 var aciertos = 0;
 var pifias = 0;
-var estado = 0; // 20 = Entrada al programa. Ajustar tamaño de serie de grados.
+var idsTamanoSerie = ["#uno","#dos","#tres","#cuatro","#cinco","#seis","#siete","#ocho","#nueve","#diez"];
+var serieUsuario = 1;
+var estado = 29; // 20 = Entrada al programa. Ajustar tamaño de serie de grados.
 				// 0 = Ajustar meta inicial
 				// 1 = Seleccione una tonalidad
 				// 2 = esta sonando una tonalidad
-				// 3 = esperando un nuevo sonido
-				// 4 = oye nuevo sonido, entra gradop
-				// 5 = (gradop esta fuera de los grados) espera a que gradop se ubique en un grado
-				// 6 = espera que usuario evalue. permiter mover gradop a otro grado
-				// 7 = evalua respuesta de gradop
+				// 3 = esperando un nuevo sonido. Permite oir cada grado al pasar por encima el mouse.
+				// 4 = oye nuevo sonido, entra gradop1. Permite oir tonalidad.
+				// 5 = (gradop1 esta fuera de los grados) espera a que gradop1 se ubique en un grado
+				// 6 = espera que usuario evalue. permiter mover gradop1 a otro grado
+				// 7 = evalua respuesta de gradop1
 				// 8 = escucha parte de tonalidad cuando no se ha elegido un nuevo sonido
 				// 9 = escucha parte de tonalidad después de ha ber elegido un nuevo sonido
-				// 10 = confirma si quiere un nuevo sonido, antes de ubicar gradop
-				// 11 = escucha parte de tonalidad después de haber ubicado gradop en algún grado
-				// 12 = repite sonido después de ubicar gradop
-				// 13 = confirma si quiere un nuevo sonido, después de ubicar gradop
+				// 10 = confirma si quiere un nuevo sonido, antes de ubicar gradop1
+				// 11 = escucha parte de tonalidad después de haber ubicado gradop1 en algún grado
+				// 12 = repite sonido después de ubicar gradop1
+				// 13 = confirma si quiere un nuevo sonido, después de ubicar gradop1
 
 // Mientras que lo retornado por funCondicion sea verdadero ejecuta funAccion, 
 // entre una ejecución y otra hace una pausa de espera milisegundo.
@@ -72,12 +73,36 @@ function iniGrados() {
 		$("#audios").append(cad);
 	};
 }
+
+//variable con la posicion en el texto. Ajustar siempre a 0
+var pos = 0;
+//variable con el texto a mostrar
+var texto = " ";
+// donde se va a mostrar el texto
+var miDiv = "encabezado";
+// tempo de aparición del texto
+var vel = 50;
+
+//creo una funcion para cambiar el texto
+function animarTexto(){
+   //incremento la posicion en 1 y extraigo el texto a mostrar en este momento.
+   pos = pos + 1;
+   var textoActual = texto.substring(0,pos);
+   //capturo el div donde se pone el texto
+   var t = document.getElementById(miDiv);
+   t.textContent = textoActual;
+   //controla la cantidad de veces que se llama a la funcion 'animarTexto'
+   if (pos <= texto.length){
+      //llama varias veces a la función 'animarTexto'
+      setTimeout(animarTexto,vel);
+   }
+};
+
 // Funcion para tocar y/o mostrar el grado seleccionado
 // @p param grad = número del grado, entre 0 y 7
 // @ param tocar = boolean, solo toca el grado si es verdadero
 // @ param ver = boolean, solo muestra el grado en el teclado si es verdadero
-function tocarGrado(grad, tocar, ver)
- {
+function tocarGrado(grad, tocar, ver) {
  	var son = tonica + tonUsuario[grad];
  	
  	if (ver) {
@@ -89,10 +114,30 @@ function tocarGrado(grad, tocar, ver)
 		if (audioElement == null) {
 			alert("No se encontró elemento de audio son" + son);
 		} else{
+			audioElement.pause(); // detiene el sonido
+			audioElement.currentTime = 0; // rebobina el sonido
 			audioElement.play();
 		};
 	};
  }
+
+function tocarListaGrados(estadoNum, oir, ver) {
+	var listaGradosP = ["gradop1","gradop2","gradop3","gradop4","gradop5","gradop6","gradop7","gradop8"];
+	//$(".grado").css("opacity", 0.3);
+	pes = 0;
+	function tocaSiguienteGrado(){
+		//alert("Entró tocar siguiente grado.");
+		if(pes < listaGrados.length) {
+			$(".portada").css("left", 0);
+			tocarGrado(listaGrados[pes], oir, ver);
+			setTimeout(tocaSiguienteGrado, 900);
+			pes++;
+		}else {
+			estado = estadoNum;
+		};
+	}
+	tocaSiguienteGrado();
+}
 
 // Funcion que selecciona un número al azar dentro de un rango dado
 function aleatorio(minimo, maximo) {
@@ -101,14 +146,17 @@ function aleatorio(minimo, maximo) {
 }
 
 
-function seleccionarGrado(){
-	if (listaGrados.length == 0){
-		listaGrados = [0,1,2,3,4,5,6,7];
+var gradosSeleccionados = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+var gradosActivos = [0,0,0,0,0,0,0,0];
+function seleccionarGrado(num){
+	if (tonalidadUsuario.length == 0){
+		tonalidadUsuario = [0,1,2,3,4,5,6,7];
 	}
-	var g = aleatorio(0,listaGrados.length - 1);
-	cambiarOpacityGrados(0.5);
-	grado = listaGrados[g];
-	listaGrados.splice(g,1);
+	var g = aleatorio(0,tonalidadUsuario.length - 1);
+	cambiarOpacityGrados(0.4);
+	grado = tonalidadUsuario[g];
+	tonalidadUsuario.splice(g,1);
+	listaGrados.push(grado);
 	tocarGrado(grado, true, false);
 	return grado;
 }
@@ -116,6 +164,7 @@ function seleccionarGrado(){
 // Esta funcion debe llamarse al final, si quiere algo despues, hacerlo a traves de FUNCIONDESPUES
 // @param sel selector de los elementos a mover
 function animarHorizontal(sel, xinicial, xfinal, tamPaso, tempo,funcionDespues) {
+
 	$(sel).css('left', xinicial);
 	mientras_con_espera( 
 			function() {
@@ -133,111 +182,158 @@ function animarHorizontal(sel, xinicial, xfinal, tamPaso, tempo,funcionDespues) 
 				} else {
 					x -= tamPaso;
 				}
-				$(sel).css('left', x)
+				$(sel).css('left', x);
 			},
 			tempo,
 			function() {
 				if (funcionDespues != null) {
+					$(sel).css('left', xfinal);
 					funcionDespues()
 				}
 			}
 		)
 }
+/**
+ * Prepara cada columna para recibir la respuesta del usuario
+ *
+ * @param serie número de columna
+ * @param i numero de grado (fila) en la columna
+ *
+ * @return vacío
+ */
+function alistarColumna(serie, i) {
+				var nom1 = "#grado" + i ;
+				var nom = nom1 + "-" + serie;
+				var s = (tonica + 1) + tonUsuario[i-1];
+				var nom2 = "tecla" + s + ".png";
+		      $("#grado" + i + "-" + serie).hover(  // función para mover grado ? frente a grados de respuesta.
+			  	function(event){
+			            //debugger
+			           // cambiarOpacityGrados(0.5);
+				        if (estado == 5 && posgradop[serie-1] !== listaGrados[serie-1]) {
+				            $("#gradop" + serie).appendTo(nom);
+				            $("#gradop" + serie).css("position", "relative");
+				            $("#gradop" + serie).css("left", 0);
+				            $("#gradop" + serie).css("top", 0);
+				            $("#sombraGrado" + serie).css("display", "inline");
+				            var x = $(nom).position();
+				            $("#sombraGrado" + serie).css("top", x.top + 1);
+				            $(nom1).css("opacity", 0.9); //resalta el grado seleccionado
+				            document.getElementById('teclado').src = nom2; // ilumina la tecla del grado seleccionado
+				        };
+				    },
+			        function(event){
+			        	if (estado == 5 && posgradop[serie-1] !== listaGrados[serie-1]) {
+				            $("#gradop" + serie).appendTo("#pantprinc");
+				            $("#gradop" + serie).css("position", "absolute");
+				            $("#gradop" + serie).css("left", 490 + (39 * (serie-1)));
+				            $("#gradop" + serie).css("top", 145);
+				            $("#sombraGrado" + serie).css("display", "none");
+				            if (gradosActivos[i - 1] == 0) { // si este grado no ha sido seleccionado
+				            	$(nom1).css("opacity", 0.4); //le devuelve su transparencia baja
+				            };
+				            document.getElementById('teclado').src = "teclado.png";
+			            };
+			        }
+		      );
 
+			$("#gradop" + serie).click(function(){	// Desactiva la función HOVER
+				var p = $("#gradop" + serie).position();
+				// Este condicional evita que se desactive el efecto HOVER si gradop1 no está
+				// ubicado en uno de los círculos punteados para recibir respuesta. Evita pasar al
+				// siguiente estado donde el programa espera que el usuario pida EVALUAR su respuesta.
+				if (p.top !== 145) {
+					$("#grado1-" + serie).unbind("mouseenter mouseleave");
+					$("#grado2-" + serie).unbind("mouseenter mouseleave");
+					$("#grado3-" + serie).unbind("mouseenter mouseleave");
+					$("#grado4-" + serie).unbind("mouseenter mouseleave");
+					$("#grado5-" + serie).unbind("mouseenter mouseleave");
+					$("#grado6-" + serie).unbind("mouseenter mouseleave");
+					$("#grado7-" + serie).unbind("mouseenter mouseleave");
+					$("#grado8-" + serie).unbind("mouseenter mouseleave");
+					if (estado == 5) {
+						objetopadre = $(this).parent().attr("id");
+						gradoTemp = +(objetopadre[objetopadre.length - 3]) - 1;
+						gradosSeleccionados[serie-1][posgradop] = 1;//registro de grados selesccionados en los diferentes intentos de respuesta en cada columna
+						gradosActivos[gradoTemp] = 1;
+						posgradop[serie-1] = gradoTemp;
+/*
+
+						$("#grado1-" + serie).click(function() { // Criterio para evaluar seleccion de usuario
+							posgradop[serie-1] = 0;
+							gradosSeleccionados[serie-1][0] = 1;
+						});
+						$("#grado2-" + serie).click(function() {
+			   				posgradop[serie-1] = 1;
+			   				gradosSeleccionados[serie-1][1] = 1;
+						});
+						$("#grado3-" + serie).click(function() {
+			   				posgradop[serie-1] = 2;
+			   				gradosSeleccionados[serie-1][2] = 1;
+						});
+						$("#grado4-" + serie).click(function() {
+			   				posgradop[serie-1] = 3;
+			   				gradosSeleccionados[serie-1][3] = 1;
+						});
+						$("#grado5-" + serie).click(function() {
+			   				posgradop[serie-1] = 4;
+			   				gradosSeleccionados[serie-1][4] = 1;
+						});
+						$("#grado6-" + serie).click(function() {
+			   				posgradop[serie-1] = 5;
+			   				gradosSeleccionados[serie-1][5] = 1;
+						});
+						$("#grado7-" + serie).click(function() {
+			   				posgradop[serie-1] = 6;
+			   				gradosSeleccionados[serie-1][6] = 1;
+						});
+						$("#grado8-" + serie).click(function() {
+			   				posgradop[serie-1] = 7;
+			   				gradosSeleccionados[serie-1][7] = 1;
+						}); */
+					}; 
+					estado = 6; // espera evaluar principalmente
+					for (var i = listaGrados.length; i > 0; i--) {
+						var postemp = $("#gradop" + i).position();
+						if (postemp.top == 145) {
+							estado = 5;
+						};
+					};
+					
+					$("#encabezado").css("color","lime");
+		    		$("#encabezado").text("Evalúe su respuesta");
+		    	};
+			});
+	//}; 	
+}
 
 function esperaMoverGrado() {
 	estado = 5;
-	// $("#gradop").on("dragstart", "", function (evento) {
+	// $("#gradop1").on("dragstart", "", function (evento) {
 	// 	drag(evento);
 	// });
-	$("#gradop").appendTo("#pantprinc");
-	$("#gradop").css("position", "absolute");
-	$("#gradop").css("left", 490);
-	$("#gradop").css("top", 140);
-
-	for (var i = 1; i < 9; i++) {
-		//$(document).ready(function(){
-			(function(){
-			var nom1 = "#grado" + i ;
-			var nom = nom1 + "-1";
-			var s = (tonica + 1) + tonUsuario[i-1];
-			var nom2 = "tecla" + s + ".png";
-	      $("#grado" + i + "-1").hover(  // función para mover grado ? frente a grados de respuesta.
-	        function(event){
-	            //debugger
-	            cambiarOpacityGrados(0.5);
-	            $("#gradop").appendTo(nom);
-	            $("#gradop").css("position", "relative");
-	            $("#gradop").css("left", 0);
-	            $("#gradop").css("top", 0);
-	            $("#sombraGrados").css("display", "inline");
-	            var x = $(nom).position();
-	            $("#sombraGrados").css("top", x.top + 1);
-	            $(nom1).css("opacity", 0.9); //resalta el grado seleccionado
-	            document.getElementById('teclado').src = nom2;
-	        },
-	        function(event){
-	            $("#gradop").appendTo("#pantprinc");
-	            $("#gradop").css("position", "absolute");
-	            $("#gradop").css("left", 490);
-	            $("#gradop").css("top", 140);
-	            $("#sombraGrados").css("display", "none");
-	            $(nom1).css("opacity", 0.5); //devuelve la transparencia baja del grado
-	            document.getElementById('teclado').src = "teclado.png";
-	        }
-	      );
-	  	})();
-	    //});
-
-		$("#gradop").click(function(){	// Desactiva la función HOVER
-			var p = $("#gradop").position();
-			// Este condicional evita que se desactive el efecto HOVER si gradop no está
-			// ubicado en uno de los círculos punteados para recibir respuesta. Evita pasar al
-			// siguiente estado donde el programa espera que el usuario pida EVALUAR su respuesta.
-			if (p.top !== 140) {
-				$("#grado1-1").unbind("mouseenter mouseleave");
-				$("#grado2-1").unbind("mouseenter mouseleave");
-				$("#grado3-1").unbind("mouseenter mouseleave");
-				$("#grado4-1").unbind("mouseenter mouseleave");
-				$("#grado5-1").unbind("mouseenter mouseleave");
-				$("#grado6-1").unbind("mouseenter mouseleave");
-				$("#grado7-1").unbind("mouseenter mouseleave");
-				$("#grado8-1").unbind("mouseenter mouseleave");
-
-				$("#grado1-1").click(function() { // Criterio para evaluar seleccion de usuario
-	   				posGradop = 0;
-				});
-				$("#grado2-1").click(function() {
-	   				posGradop = 1;
-				});
-				$("#grado3-1").click(function() {
-	   				posGradop = 2;
-				});
-				$("#grado4-1").click(function() {
-	   				posGradop = 3;
-				});
-				$("#grado5-1").click(function() {
-	   				posGradop = 4;
-				});
-				$("#grado6-1").click(function() {
-	   				posGradop = 5;
-				});
-				$("#grado7-1").click(function() {
-	   				posGradop = 6;
-				});
-				$("#grado8-1").click(function() {
-	   				posGradop = 7;
-				});
-				estado = 6; // espera evaluar principalmente
-				$("#encabezado").css("color","lime");
-	    		$("#encabezado").text("Evalúe su respuesta");
-	    	};
-		});
+	for (var serie = 1; serie <= serieUsuario; serie++) {
+		if (posgradop[serie-1] !== listaGrados[serie-1]) {
+			$("#gradop" + serie).appendTo("#pantprinc");
+			$("#gradop" + serie).css("position", "absolute");
+			$("#gradop" + serie).css("left", 490 + (39 * (serie-1)));
+			$("#gradop" + serie).css("top", 145);
+		} else {
+			$("#grado1-" + serie).unbind("mouseenter mouseleave");
+			$("#grado2-" + serie).unbind("mouseenter mouseleave");
+			$("#grado3-" + serie).unbind("mouseenter mouseleave");
+			$("#grado4-" + serie).unbind("mouseenter mouseleave");
+			$("#grado5-" + serie).unbind("mouseenter mouseleave");
+			$("#grado6-" + serie).unbind("mouseenter mouseleave");
+			$("#grado7-" + serie).unbind("mouseenter mouseleave");
+			$("#grado8-" + serie).unbind("mouseenter mouseleave");
+		};	
+		for (var i = 1; i <= 8; i++) {
+			alistarColumna(serie, i);	
+		};
 	};
-	
-	// pasa a estado 6 cuando se ubique gradop en algún grado o
+	// pasa a estado 6 cuando se ubique gradop1 en algún grado o
 	// a estado 9 si oprime boton oir tonalidad
-	
 }
 
 function esperarFinAudio() {
@@ -259,7 +355,7 @@ function cambiarOpacityGrados(num) {
 
 function ajustarTonalidad(num, $obj) {
 	estado = 2;
-	listaGrados = [0,1,2,3,4,5,6,7];
+	tonalidadUsuario = [0,1,2,3,4,5,6,7];
 	tonica = num;
 	
 	$("#teclado").css('top', coordsTeclado[num]);
@@ -296,9 +392,19 @@ function ajustarTonalidad(num, $obj) {
 									esperarFinAudio();
 									document.getElementById('teclado').src = "teclado.png";
 									estado = 3;
+									cambiarOpacityGrados("0.4");
 									$("#encabezado").css("color","rgb(0,200,255)");
-									$("#encabezado").text("Escoge un Nuevo sonido");
-									setTimeout(cambiarOpacityGrados("0.5"), 800);
+									$("#encabezado").css("left", 500);
+									$("#encabezado").css("top", 460);
+									texto = "Haz click en Nuevo sonido";
+									if (serieUsuario > 1) {
+										texto = "Haz click en Nueva serie";
+									};
+									pos = 0;
+									if ($("#encabezado").text() == texto) {
+									} else{
+										animarTexto();
+									};
 								});
 								tocarGrado(7,true, true);
 								});
@@ -341,10 +447,14 @@ function ajustarMenusAGris() {
 }
 
 function guardarGrados() {
-	// Esconde gradop y su sombra azul
-	$("#gradop").css("display", "none");
-	$("#sombraGrados").css("display", "none");
-	// Ajusta al teclado en 'blanco'
+	// Esconde gradosp y su sombra azul
+	$(".gp").css("display", "none");
+	$(".sgp").css("display", "none");
+	// Borra fondo gris de circulos de respuesta.
+	$(".gris").css("background-color","");
+	// Baja luminosidad de grados
+	$(".grado").css("opacity",0.4);
+	// Ajusta el teclado en 'blanco'
 	document.getElementById('teclado').src = "teclado.png";
 	// Guarda grados
 	animarHorizontal("#grado1", 410, 340, 1, 10, function() {});
@@ -357,53 +467,120 @@ function guardarGrados() {
 	animarHorizontal("#grado8", 410, 340, 1, 10, function() {});
 }
 
-function evaluar() {
-	estado = 7;
-	var lisRom = ["I.", "II.", "III.", "IV.", "V.", "VI.", "VII.", "I agudo."];
-	if (grado == posGradop) {
-		$("#encabezado").css("color","rgb(210,255,255)");
-		$("#encabezado").text("Muy bien, ha sonado el grado " + lisRom[posGradop]);
-		document.getElementById("gradop").src = gradoGrafs[grado];
-		esperarTocarGrado(grado, true,true, 1500, function() {
-		aciertos++;
+function textoMetaAlcanzada() {
+	$("#encabezado").css("color","yellow");
+	$("#encabezado").text("¡ Muy bien ! has alcanzado la meta propuesta.");
+}
+
+function respBuena() {
 		$("#marcador1").text(aciertos);
-		$("#sombraGrados").css("display", "none");
 		$("#encabezado").css("color","rgb(0,255,255)");
-		$("#encabezado").text("Selecciona un Nuevo sonido");
 		$(".g1").css("background-color","");
 		if (aciertos >= meta) {
-			$("#encabezado").css("color","yellow");
-			$("#encabezado").text("¡ Muy bien ! has alcanzado la meta propuesta.");
+			setTimeout(textoMetaAlcanzada, 1500); // para poder ver ultimo texto de grados acertados
 			estado = 0;
-			setTimeout(guardarGrados, 1000);
-			setTimeout(ajustarMenusAGris, 2000);
-			setTimeout(titulo2, 2500);
+			t = 900 * listaGrados.length;
+			setTimeout(guardarGrados, t + 2000);
+			setTimeout(ajustarMenusAGris, t + 3500);
+			setTimeout(titulo2, t + 4200);
 		} else {
 			estado = 3;
-		}});
+		}
+}
+
+function evaluar() {
+	estado = 7;
+	var lisRom = ["I", "II", "III", "IV", "V", "VI", "VII", "I agudo"];
+
+	var cuantosbien = 0;
+	for (var i = listaGrados.length; i >= 1; i--) {
+		for (var k = 8; k >= 1; k--) {
+			var posGrado = $("#grado" + k + "-" + i).html();
+			if (posGrado !== "" && listaGrados[i - 1] == k - 1) {
+				cuantosbien++;
+			};
+		};
+	};
+	// Respuesta buena y meta alcanzada
+	if (cuantosbien == listaGrados.length) {
+		aciertos++;
+		$("#encabezado").css("color","rgb(210,255,255)");
+		var mensaje = "Muy bien, ha sonado el grado ";
+		//debugger
+		if (listaGrados.length > 1) {
+			mensaje = "Muy bien, han sonado los grados ";
+		}
+		sep = "";
+		for (var i = 0; i <= listaGrados.length - 1; i++) {
+			mensaje += sep + lisRom[listaGrados[i]];
+			if (i == listaGrados.length - 2) {
+			sep = " y ";
+			} else{
+				sep = ", ";
+			};
+			if (i == listaGrados.length - 1) {
+				mensaje += ".";
+			};
+			document.getElementById("gradop" + (i + 1)).src = gradoGrafs[listaGrados[i]];
+		};
+		tocarListaGrados(3, true, true);		
+		$("#encabezado").text(mensaje);
+		respBuena();
+		// Respuesta buena y meta aun no alcanzada
+		if (aciertos < meta) {
+			pos = 0;
+			texto = "Haz click en Nuevo sonido";
+			if (serieUsuario > 1) {
+				texto = "Selecciona una Nueva serie";
+			};
+			var t = 1000 * listaGrados.length;
+			setTimeout(animarTexto,t);
+		};
 	} else {
+		// Respuesta equivocada
 		$("#encabezado").css("color","white");
 		$("#encabezado").text("Intenta con otro grado.");
-		var nom = "#grado" + (posGradop + 1) + "-1"; 
-		$(nom).css("background-color","rgb(50,50,50)"); // marca con gris el sonido equivocado
-		$(nom).unbind("mouseenter mouseleave"); // desactiva efecto HOVER, no permite una segunda respuesta en este grado
-		if (respuestasGrados[posGradop] == 1) { // evita que el usuario evalúe un sonido equivocado mas de una vez
-			$("#encabezado").text("Pruebe ubicando el sonido ? frente a otro grado.");
-			esperaMoverGrado();
-		} else{
-			respuestasGrados[posGradop] = 1; //controlador para evitar contar dos o mas veces como error el mismo grado
-			pifias++;
-			$("#marcador2").text(pifias);
-			esperaMoverGrado();
-		};	
+		
+		for (var i = listaGrados.length - 1; i >= 0; i--) {
+			if (posgradop[i] !== listaGrados[i]) {
+				var nom = "#grado" + (posgradop[i] + 1) + "-" + (i + 1);
+				$(nom).css("background-color","rgb(50,50,50)"); // marca con gris el sonido equivocado
+				//$(nom).unbind("mouseenter mouseleave"); // desactiva efecto HOVER, no permite una segunda respuesta en este grado
+				var nx = "#grado" + (posgradop[i] + 1);
+				$(nx).css("opacity",0.4); // opaca sonido de respuesta equivocada
+				gradosActivos[posgradop[i]] = 0; // deselecciona este grado como respuesta activa, es decir, como la respuesta es incorrecta se desactiva.
+				if (gradosSeleccionados[i][posgradop[i]] == 1) { // evita que el usuario evalúe un sonido equivocado mas de una vez
+					$("#encabezado").text("Pruebe ubicando el sonido ? frente a otro grado.");
+					if (posgradop[i] !== listaGrados[i]) {
+						esperaMoverGrado();
+					};
+				} else{
+					gradosSeleccionados[i][posgradop[i]] = 1; //controlador para evitar contar dos o mas veces como error el mismo grado
+					pifias++;
+					if (posgradop[i] !== listaGrados[i]) {
+						esperaMoverGrado();
+					};
+				};	
+			};
+		};
+		$("#marcador2").text(pifias);
+		for (var i = listaGrados.length - 1; i >= 0; i--) {
+			// Restituye los grados activos buenos que se hayan desactivado en el anterior FOR
+			// cuando una respuesta equivocada es igual a una correcta en otra columna.
+			// Esto para que el hover no baje la luminosidad de un grado de respuesta carrecta.
+			if (posgradop[i] == listaGrados[i]) {
+				gradosActivos[posgradop[i]] = 1;
+				var mnx = "#grado" + (posgradop[i] + 1);
+				$(mnx).css("opacity",0.9); // enciende sonido de respuesta correcta
+			};
+		};
 	};
-	gradoSelUsuario = posGradop;
 }
 
 function seleccionarTonalidad() {
 	estado = 1;  // espera a que se oprima un boton de tonalidad.
-	$("#gradop").css("display", "none");
-	$("#sombraGrados").css("display", "none");
+	$("#gradop1").css("display", "none");
+	$(".sgp").css("display", "none");
 	$("#marcador1").text(aciertos);
 	$("#marcador2").text(pifias);
 	document.getElementById('teclado').src = "teclado.png";
@@ -412,9 +589,6 @@ function seleccionarTonalidad() {
 	$("#titulo").css('color', "rgb(210,100,20)");
 	$(".tonal").css('border', "2px solid rgb(80,80,80)");
 	$(".tonal").css('color', "rgb(80,80,80)");
-	$("#encabezado").css("color","rgb(0,180,255)");
-    $("#encabezado").text("Selecciona una tonalidad.");
-
 }
 
 function activarHover(lista1Objetos, lista2Objetos) {
@@ -435,7 +609,13 @@ function activarHover(lista1Objetos, lista2Objetos) {
 
 //ENTRADA
 function titulo1() {
-	$("#encabezado").text("Escoge un número en Tamaño de la serie:");
+	$("#encabezado").css("color","rgb(0,180,255)");
+	texto = "Escoge un número en Tamaño de la serie";
+	vel = 8;
+	if ($("#encabezado").text() == texto) {
+	} else{
+		animarTexto();
+	};
 	$("#fondoEntrada").css("width", 0);
 	$("#fondoEntrada").css("height", 0);
 	setTimeout(seleccionarTamañoSerie, 500);
@@ -447,135 +627,99 @@ function seleccionarTamañoSerie() {
 	$("#tituloSerie").css("color","rgb(130,130,130)");
 }
 
+function hoverSerieSola(marca, indiceMarca) {
+
+		$(idsTamanoSerie[indiceMarca]).hover(function(){
+    	$(idsTamanoSerie[indiceMarca]).css("color", "rgb(170,170,170)");
+    	$(nombresMarca[indiceMarca]).css("opacity","0.9");
+    	mostrarOcultarDashedCircles(0);
+    	mostrarOcultarDashedCircles(indiceMarca + 1);
+    		}, function(){
+    	$(idsTamanoSerie[indiceMarca]).css("color", "rgb(60,60,60)");
+    	$(nombresMarca[indiceMarca]).css("opacity","0.4");
+    	//if (marca > indiceMarca) {
+    		mostrarOcultarDashedCircles(0);
+    		mostrarOcultarDashedCircles(marca);
+    	//};
+	});
+}
+
+// Activa total y parcialmente el efecto HOVER
 function activarHoverTamañoSerie(num){
-	var lista1 = ["#uno","#dos","#tres","#cuatro","#cinco","#seis","#siete","#ocho","#nueve","#diez"];
 	var lista2 = ["#marcaColumna1","#marcaColumna2","#marcaColumna3","#marcaColumna4","#marcaColumna5","#marcaColumna6","#marcaColumna7","#marcaColumna8","#marcaColumna9","#marcaColumna10"];
-	
-	$(".numserie").css("color","rgb(80,80,80)");
-	$(".marca").css("color","rgb(80,80,80)");
-	$(lista1[0]).hover(function(){
-    	$(lista1[0]).css("color", "rgb(170,170,170)");
-    	$(lista2[0]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[0]).css("color", "rgb(60,60,60)");
-    	$(lista2[0]).css("opacity","0.4");
-	});
-	$(lista1[1]).hover(function(){
-    	$(lista1[1]).css("color", "rgb(170,170,170)");
-    	$(lista2[1]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[1]).css("color", "rgb(60,60,60)");
-    	$(lista2[1]).css("opacity","0.4");
-	});
-	$(lista1[2]).hover(function(){
-    	$(lista1[2]).css("color", "rgb(170,170,170)");
-    	$(lista2[2]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[2]).css("color", "rgb(60,60,60)");
-    	$(lista2[2]).css("opacity","0.4");
-	});
-	$(lista1[3]).hover(function(){
-    	$(lista1[3]).css("color", "rgb(170,170,170)");
-    	$(lista2[3]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[3]).css("color", "rgb(60,60,60)");
-    	$(lista2[3]).css("opacity","0.4");
-	});
-	$(lista1[4]).hover(function(){
-    	$(lista1[4]).css("color", "rgb(170,170,170)");
-    	$(lista2[4]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[4]).css("color", "rgb(60,60,60)");
-    	$(lista2[4]).css("opacity","0.4");
-	});
-	$(lista1[5]).hover(function(){
-    	$(lista1[5]).css("color", "rgb(170,170,170)");
-    	$(lista2[5]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[5]).css("color", "rgb(60,60,60)");
-    	$(lista2[5]).css("opacity","0.4");
-	});
-	$(lista1[6]).hover(function(){
-    	$(lista1[6]).css("color", "rgb(170,170,170)");
-    	$(lista2[6]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[6]).css("color", "rgb(60,60,60)");
-    	$(lista2[6]).css("opacity","0.4");
-	});
-	$(lista1[7]).hover(function(){
-    	$(lista1[7]).css("color", "rgb(170,170,170)");
-    	$(lista2[7]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[7]).css("color", "rgb(60,60,60)");
-    	$(lista2[7]).css("opacity","0.4");
-	});
-	$(lista1[8]).hover(function(){
-    	$(lista1[8]).css("color", "rgb(170,170,170)");
-    	$(lista2[8]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[8]).css("color", "rgb(60,60,60)");
-    	$(lista2[8]).css("opacity","0.4");
-	});
-	$(lista1[9]).hover(function(){
-    	$(lista1[9]).css("color", "rgb(170,170,170)");
-    	$(lista2[9]).css("opacity","0.9");
-    		}, function(){
-    	$(lista1[9]).css("color", "rgb(60,60,60)");
-    	$(lista2[9]).css("opacity","0.4");
-	});
-	if (num >= 1) {
-		$(".numserie").css("color","rgb(60,60,60)");
-		$(".marca").css("opacity","0.4");
-		$(lista1[0]).unbind("mouseenter mouseleave");
-		$(lista1[0]).css("color", "rgb(170,170,170)");
-    	$(lista2[0]).css("opacity","0.9");
-    	if (num >= 2) {
-    		$(lista1[1]).unbind("mouseenter mouseleave");
-			$(lista1[1]).css("color", "rgb(170,170,170)");
-    		$(lista2[1]).css("opacity","0.9");
-    		if (num >= 3) {
-	    		$(lista1[2]).unbind("mouseenter mouseleave");
-				$(lista1[2]).css("color", "rgb(170,170,170)");
-	    		$(lista2[2]).css("opacity","0.9");
-	    		if (num >= 4) {
-		    		$(lista1[3]).unbind("mouseenter mouseleave");
-					$(lista1[3]).css("color", "rgb(170,170,170)");
-		    		$(lista2[3]).css("opacity","0.9");
-		    		if (num >= 5) {
-			    		$(lista1[4]).unbind("mouseenter mouseleave");
-						$(lista1[4]).css("color", "rgb(170,170,170)");
-			    		$(lista2[4]).css("opacity","0.9");
-			    		if (num >= 6) {
-				    		$(lista1[5]).unbind("mouseenter mouseleave");
-							$(lista1[5]).css("color", "rgb(170,170,170)");
-				    		$(lista2[5]).css("opacity","0.9");
-				    		if (num >= 7) {
-					    		$(lista1[6]).unbind("mouseenter mouseleave");
-								$(lista1[6]).css("color", "rgb(170,170,170)");
-					    		$(lista2[6]).css("opacity","0.9");
-					    		if (num >= 8) {
-						    		$(lista1[7]).unbind("mouseenter mouseleave");
-									$(lista1[7]).css("color", "rgb(170,170,170)");
-						    		$(lista2[7]).css("opacity","0.9");
-						    		if (num >= 9) {
-							    		$(lista1[8]).unbind("mouseenter mouseleave");
-										$(lista1[8]).css("color", "rgb(170,170,170)");
-							    		$(lista2[8]).css("opacity","0.9");
-							    		if (num >= 10) {
-								    		$(lista1[9]).unbind("mouseenter mouseleave");
-											$(lista1[9]).css("color", "rgb(170,170,170)");
-								    		$(lista2[9]).css("opacity","0.9");
-								    	};
-							    	};
-						    	};
-					    	};
-				    	};
-			    	};
-		    	};
-	    	};
-    	};
-    	setTimeout(titulo2, 500);
+
+	$(".numserie").css("color","rgb(60,60,60)");
+	$(".marca").css("color","rgb(60,60,60)");
+
+	for (var i = 0; i <= 9; i++) {
+		hoverSerieSola(num, i);
 	};
+
+	 if (num >= 1) {
+	 	$(".numserie").css("color","rgb(60,60,60)");
+	 	$(".marca").css("opacity","0.4");
+		for (var i = num-1; i >= 0; i--) {
+			$(idsTamanoSerie[i]).unbind("mouseenter mouseleave");
+			$(idsTamanoSerie[i]).css("color", "rgb(170,170,170)");
+	    	$(nombresMarca[i]).css("opacity","0.9");
+		}
+	 	setTimeout(titulo2, 500);
+	 }
+	
+
+	// if (num >= 1) {
+	// 	$(".numserie").css("color","rgb(60,60,60)");
+	// 	$(".marca").css("opacity","0.4");
+	// 	$(idsTamanoSerie[0]).unbind("mouseenter mouseleave");
+	// 	$(idsTamanoSerie[0]).css("color", "rgb(170,170,170)");
+ //    	$(lista2[0]).css("opacity","0.9");
+ //    	if (num >= 2) {
+ //    		$(idsTamanoSerie[1]).unbind("mouseenter mouseleave");
+	// 		$(idsTamanoSerie[1]).css("color", "rgb(170,170,170)");
+ //    		$(lista2[1]).css("opacity","0.9");
+ //    		if (num >= 3) {
+	//     		$(idsTamanoSerie[2]).unbind("mouseenter mouseleave");
+	// 			$(idsTamanoSerie[2]).css("color", "rgb(170,170,170)");
+	//     		$(lista2[2]).css("opacity","0.9");
+	//     		if (num >= 4) {
+	// 	    		$(idsTamanoSerie[3]).unbind("mouseenter mouseleave");
+	// 				$(idsTamanoSerie[3]).css("color", "rgb(170,170,170)");
+	// 	    		$(lista2[3]).css("opacity","0.9");
+	// 	    		if (num >= 5) {
+	// 		    		$(idsTamanoSerie[4]).unbind("mouseenter mouseleave");
+	// 					$(idsTamanoSerie[4]).css("color", "rgb(170,170,170)");
+	// 		    		$(lista2[4]).css("opacity","0.9");
+	// 		    		if (num >= 6) {
+	// 			    		$(idsTamanoSerie[5]).unbind("mouseenter mouseleave");
+	// 						$(idsTamanoSerie[5]).css("color", "rgb(170,170,170)");
+	// 			    		$(lista2[5]).css("opacity","0.9");
+	// 			    		if (num >= 7) {
+	// 				    		$(idsTamanoSerie[6]).unbind("mouseenter mouseleave");
+	// 							$(idsTamanoSerie[6]).css("color", "rgb(170,170,170)");
+	// 				    		$(lista2[6]).css("opacity","0.9");
+	// 				    		if (num >= 8) {
+	// 					    		$(idsTamanoSerie[7]).unbind("mouseenter mouseleave");
+	// 								$(idsTamanoSerie[7]).css("color", "rgb(170,170,170)");
+	// 					    		$(lista2[7]).css("opacity","0.9");
+	// 					    		if (num >= 9) {
+	// 						    		$(idsTamanoSerie[8]).unbind("mouseenter mouseleave");
+	// 									$(idsTamanoSerie[8]).css("color", "rgb(170,170,170)");
+	// 						    		$(lista2[8]).css("opacity","0.9");
+	// 						    		if (num >= 10) {
+	// 							    		$(idsTamanoSerie[9]).unbind("mouseenter mouseleave");
+	// 										$(idsTamanoSerie[9]).css("color", "rgb(170,170,170)");
+	// 							    		$(lista2[9]).css("opacity","0.9");
+	// 							    	};
+	// 						    	};
+	// 					    	};
+	// 				    	};
+	// 			    	};
+	// 		    	};
+	// 	    	};
+	//     	};
+ //    	};
+    	
+	//};
 }
 
 function desactivarHoverTamañoSerie() {
@@ -603,10 +747,18 @@ function desactivarHoverTamañoSerie() {
 }
 
 function titulo2() {
-	
+	estado = 0;
 	// Titulo 2
 	$("#encabezado").css("color","rgb(0,180,255)");
-	$("#encabezado").text("Selecciona un número en Meta");
+	// Reubica "encabezado", instrucciones a usuario
+	$("#encabezado").css("top", 70);
+	$("#encabezado").css("left", 5);
+	texto = "Selecciona un número en Meta";
+	pos = 0;
+	if ($("#encabezado").text() == texto) {
+	} else{
+		animarTexto();
+	};
 	setTimeout(seleccionarMeta, 500);
 }
 
@@ -620,7 +772,7 @@ function seleccionarMeta(){
 }
 
 function ajustarMeta(num, obj) {
-	estado = 0;
+	estado = 21;
 	$(".meta").css('border', "2px solid rgb(60,60,60)"); // asi se llama una clase de objetos.
 	$(".meta").css('color', "rgb(60,60,60)");
 	$(obj).css('border', "2px solid rgb(210,100,20)");
@@ -633,7 +785,14 @@ function ajustarMeta(num, obj) {
 
 function titulo3() {
 	$("#encabezado").css("color","rgb(0,180,255)");
-	$("#encabezado").text("Selecciona una Clase de escala");
+	$("#encabezado").css("top", 223);
+	$("#encabezado").css("left", 0);
+	texto = "Selecciona una Clase de escala";
+	pos = 0;
+	if ($("#encabezado").text() == texto) {
+	} else{
+		animarTexto();
+	};
 	setTimeout(mostrarMenuEscala, 500);
 }
 
@@ -650,28 +809,63 @@ function ajustarModo(obj) {
 	$(".modo").css('color', "rgb(60,60,60)");
 	$(obj).css('border', "2px solid rgb(210,100,20)");
 	$(obj).css('color', "rgb(0,100,255)");
+	$("#encabezado").css("color","rgb(0,180,255)");
+	$("#encabezado").css("top", 338);
+	$("#encabezado").css("left", 20);
+	texto = "Selecciona una tonalidad.";
+	pos = 0;
+	if ($("#encabezado").text() == texto) {
+	} else{
+		animarTexto();
+	};
 	setTimeout(seleccionarTonalidad, 500);
 }
 
+function ocultaGradosp() {
+	$(".gp").css("left", 955);
+	$(".gp").css("display", "none");
+}
+
+var numGradoSerie = 1;
 function oirNuevoSonido() {
     estado = 4;
-    $("#gradop").appendTo("#pantprinc");
-	$("#gradop").css("position", "absolute");
-	$("#gradop").css("left", 955);
-	$("#gradop").css("top", 140);
-    document.getElementById('teclado').src = "teclado.png";
-    document.getElementById('gradop').src = "gradop.png";
-    $("#gradop").css("display", "inline");
-    var x = $("#gradop").position().left
-    if (x == 955 || x == 490) {
-        $("#gradop").css("top", 140);
-        seleccionarGrado();
-        animarHorizontal("#gradop", 955, 490, 5, 10, esperaMoverGrado);
-        gradoSelUsuario = 10;
-        respuestasGrados = [0,0,0,0,0,0,0,0];
+    posgradop = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]; //inicializa
+    if (numGradoSerie <= serieUsuario) {
+	   	$("#gradop" + numGradoSerie).appendTo("#pantprinc");
+		$("#gradop" + numGradoSerie).css("position", "absolute");
+		$("#gradop" + numGradoSerie).css("left", 955);
+		$("#gradop" + numGradoSerie).css("top", 145);
+	    document.getElementById('teclado').src = "teclado.png";
+	    document.getElementById("gradop" + numGradoSerie).src = "gradop.png";
+	    $("#gradop" + numGradoSerie).css("display", "inline");
+	    var x = $("#gradop" + numGradoSerie).position().left
+	    if (x == 955 || x == 490 + (numGradoSerie-1) * 39) {
+	        $("#gradop" + numGradoSerie).css("top", 145);
+	        seleccionarGrado(numGradoSerie);
+	        var velocidad = (955 -(490 + (39 * (numGradoSerie - 1)))) / 600;
+	        animarHorizontal("#gradop" + numGradoSerie, 955, 490 + (39 * (numGradoSerie-1)), 10 * velocidad, 10, function(){
+	        	numGradoSerie++;
+	        	var date = new Date();
+//- date.getMilliseconds()
+	    		setTimeout(oirNuevoSonido, 100 ); // tiempo entre los gradop en una serie.
+	        });
+	    }
+	    
+	} else {
+		esperaMoverGrado();
+    	setTimeout(titulox, 1000);
     }
-    $("#encabezado").css("color","white");
-    $("#encabezado").text("Ubica el sonido ? frente a un grado");
+}
+
+function titulox() {
+	estado = 5;
+	//$("#encabezado").css("color","white");
+	if (listaGrados.length == 1) {
+		$("#encabezado").text("Ubica el sonido ? frente a un grado");
+	} else{
+		$("#encabezado").text("Ubica cada sonido ? frente a un grado");
+	};
+    
 }
 
 function esperarTocarGrado(grado, tocar, ver, lapso, funDespues) {
@@ -711,37 +905,57 @@ function apagar(obj, num) {
 }
 
 function portada1() {
-	iluminar("#portada1", 0);
+	if (estado == 29) {
+		iluminar("#portada1", 0);
+	};
 }
 function portada2() {
-	iluminar("#portada2", 0);
+	if (estado == 29) {
+		iluminar("#portada2", 0);
+	};
 }
 function portada3() {
-	iluminar("#portada3", 0);
+	if (estado == 29) {
+		iluminar("#portada3", 0);
+	};
 }
 
 function creditos1() {
-	iluminar("#creditos1", 0);
+	if (estado == 29) {
+		iluminar("#creditos1", 0);
+	};
 }
 function creditos2() {
-	iluminar("#creditos2", 0);
+	if (estado == 29) {
+		iluminar("#creditos2", 0);
+	};
 }
 function creditos3() {
-	iluminar("#creditos3", 0);
+	if (estado == 29) {
+		iluminar("#creditos3", 0);
+	};
 }
 function creditos4() {
-	iluminar("#creditos4", 0);
+	if (estado == 29) {
+		iluminar("#creditos4", 0);
+	};
 }
 function creditos5() {
-	iluminar("#creditos5", 0);
+	if (estado == 29) {
+		iluminar("#creditos5", 0);
+	};
 }
 function creditos6() {
-	iluminar("#creditos6", 0);
+	if (estado == 29) {
+		iluminar("#creditos6", 0);
+	};
 }
 function boton1() {
-	estado = 30; // Cerrar portada y entrar al programa
-	$("#boton1").css("color", "rgb(90,90,90)");
-	$("#boton1").css("border", "2px solid rgb(90,90,90)");
+	if (estado == 29) {
+		//estado = 30; // Cerrar portada y entrar al programa
+		$("#boton1").css("color", "rgb(90,90,90)");
+		$("#boton1").css("border", "2px solid rgb(90,90,90)");
+	};
 }
 
 function cerrarPortada() {
@@ -757,19 +971,30 @@ function cerrarPortada() {
 	$(".portada").css("height", 0);
 	setTimeout(titulo1, 300);
 }
+
+function resetTeclado() {
+	document.getElementById('teclado').src = "teclado.png";
+}
+
 function oirArpegio(num) {
 	nota = 0;
+	var ton = tonica + 1; // Calcula el # del archivo grafico del acorde segun la tonalidad 
+	if (modo > 0) {  	  // y el modo seleccionados por el usuario
+		ton = ton + 12;
+	}; 
 	var f = function() {
 		if (nota < arpegio.length) {
 			tocarGrado(arpegio[nota], true, true);
 			nota++;
 			setTimeout(f,930);
 		} else {
+			document.getElementById('teclado').src = "tonal" + ton + ".png";
 			tocarGrado(0, true, false);
 			tocarGrado(2, true, false);
 			tocarGrado(4, true, false);
 			tocarGrado(7, true, false);
 			estado = num;
+			setTimeout(resetTeclado,950);
 		};
 	}
 	f();
@@ -810,25 +1035,58 @@ function iluminarOpacarGrado(num, obj, luz) {
 	};
 }
 
+function mostrarOcultarDashedCircles(num) {
+	var listaC = [".g1", ".g2", ".g3", ".g4", ".g5", ".g6", ".g7", ".g8", ".g9", ".g10"];
+	if (num == 0) {
+		for (var i = 0; i <= listaC.length - 1; i++) {
+			 $(listaC[i]).css("border", "");
+		};
+	} else if (num == 1) {
+		$(".g1").css("border", "1px dashed gray");
+	} else if (num > 1) {
+		for (var i = 0; i <= num - 1; i++) {
+			 $(listaC[i]).css("border", "1px dashed gray");
+		};
+	};
+}
+
+function clickTamanoSerie(num) {
+	$(idsTamanoSerie[num-1]).on("click", "", function () {
+		if (estado == 20 || estado == 0) {
+			serieUsuario = num;
+			if (num == 1) { 
+				$("#nuevosonido").text("Nuevo sonido");
+				$("#repetirsonido").text("Repetir sonido");
+			} else {
+				$("#nuevosonido").text("Nueva serie");
+				$("#repetirsonido").text("Repetir serie");
+			};
+			mostrarOcultarDashedCircles(0);
+			mostrarOcultarDashedCircles(num);
+			activarHoverTamañoSerie(num);
+		}
+	});
+}
+
 function inicio() {
 	iniGrados();
 
 	$("#boton1").on( "mouseenter", function() {
-		if (estado == 30) {
+		if (estado == 29) {
 			$("#boton1").css("color", "rgb(0,100,255)");
 			$("#boton1").css("border", "2px solid rgb(210,100,20)");
 		}
 	});
 
 	$("#boton1").on( "mouseleave", function() {
-		if (estado == 30) {
+		if (estado == 29) {
 			$("#boton1").css("color", "rgb(90,90,90)");
 			$("#boton1").css("border", "2px solid rgb(90,90,90)");
 		}
 	});
 
 	$("#boton1").on("click", "", function () {
-		if (estado == 30) {
+		if (estado == 29) {
 			estado = 31;
 			apagar(".portada", 1.0);
 			setTimeout(cerrarPortada, 1000);
@@ -841,7 +1099,7 @@ function inicio() {
 		$("#nuevosonido").css("background-color", "");
   		if (estado == 3 || estado == 5 || estado == 6) {
 			$("#nuevosonido").hover(function(){
-    		$(this).css("background-color", "rgb(35,35,35)");
+    		$(this).css("background-color", "rgb(0,0,70)");
     		}, function(){
     		$(this).css("background-color", "");
 			});
@@ -854,7 +1112,7 @@ function inicio() {
 		$("#repetirsonido").unbind("mouseenter mouseleave");
   		if (estado == 3 || estado == 5 || estado == 6) {
 			$("#repetirsonido").hover(function(){
-    		$(this).css("background-color", "rgb(35,35,35)");
+    		$(this).css("background-color", "rgb(0,0,70)");
     		}, function(){
     		$(this).css("background-color", "");
 			});
@@ -867,7 +1125,7 @@ function inicio() {
 		$("#oirtonalidad").unbind("mouseenter mouseleave");
   		if (estado == 3 || estado == 5 || estado == 6) {
 			$("#oirtonalidad").hover(function(){
-    		$(this).css("background-color", "rgb(35,35,35)");
+    		$(this).css("background-color", "rgb(0,0,70)");
     		}, function(){
     		$(this).css("background-color", "");
 			});
@@ -880,7 +1138,7 @@ function inicio() {
 		$("#evaluar").unbind("mouseenter mouseleave");
   		if (estado == 3 || estado == 5 || estado == 6) {
 			$("#evaluar").hover(function(){
-    		$(this).css("background-color", "rgb(35,35,35)");
+    		$(this).css("background-color", "rgb(0,0,60)");
     		}, function(){
     		$(this).css("background-color", "");
 			});
@@ -890,12 +1148,25 @@ function inicio() {
 	});
 
 	$("#nuevosonido").on("click", "", function (evento) {
-		$("#sombraGrados").css("display", "none");
+		$(".sgp").css("display", "none");
+		//Se necesita inicializar en inactivo hover de todos los circulos en las columnas de respuesta debajo de los gradop.
 		if (estado == 3) {
-           oirNuevoSonido();
+			listaGrados = [];
+			ocultaGradosp();
+			gradosSeleccionados = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+			gradosActivos = [0,0,0,0,0,0,0,0];
+			numGradoSerie = 1;
+			$(".gris").css("background-color","");
+           	oirNuevoSonido();
        } else if (estado == 5) {
        		estado = 10;
        		if (confirm("¿Está seguro que desea cambiar de sonido?")) {
+       			listaGrados = [];
+       			ocultaGradosp();
+       			gradosSeleccionados = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+       			gradosActivos = [0,0,0,0,0,0,0,0];
+       			numGradoSerie = 1;
+       			$(".gris").css("background-color","");
        			oirNuevoSonido();
        		} else {
        			esperaMoverGrado();
@@ -903,6 +1174,12 @@ function inicio() {
        } else if (estado == 6) {
        		estado = 13;
        		if (confirm("¿Está seguro que desea cambiar de sonido?")) {
+       			listaGrados = [];
+       			ocultaGradosp();
+       			gradosSeleccionados = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+       			gradosActivos = [0,0,0,0,0,0,0,0];
+       			numGradoSerie = 1;
+       			$(".gris").css("background-color","");
        			oirNuevoSonido();
        		} else {
        			estado = 6;
@@ -912,12 +1189,15 @@ function inicio() {
 	});
 
 	$("#repetirsonido").on("click", "", function (evento) {
+		pos = 0;
+		//tocarListaGrados();
 		if (estado == 5) {
 			estado = 14;
-			esperarTocarGrado(grado, true, false, 1050, pasaa5);
+			tocarListaGrados(5, true, false);
 		} else if (estado == 6){
 			estado = 12;
-			esperarTocarGrado(grado, true, false, 1050, pasaa6);
+			tocarListaGrados(6, true, false);
+			//esperarTocarGrado(grado, true, false, 1050, pasaa6);
 		}
 
 	});
@@ -1031,162 +1311,116 @@ function inicio() {
 	});
 
 	// Click sobre botones de Tamaño de serie.
-	$("#uno").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(1);
-		}
-	});
-	$("#dos").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(2);
-		}
-	});
-	$("#tres").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(3);
-		}
-	});
-	$("#cuatro").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(4);
-		}
-	});
-	$("#cinco").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(5);
-		}
-	});
-	$("#seis").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(6);
-		}
-	});
-	$("#siete").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(7);
-		}
-	});
-	$("#ocho").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(8);
-		}
-	});
-	$("#nueve").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(9);
-		}
-	});
-	$("#diez").on("click", "", function () {
-		if (estado == 20) {
-			activarHoverTamañoSerie(10);
-		}
-	});
+	for (var i = idsTamanoSerie.length - 1; i >= 0; i--) {
+		clickTamanoSerie(i + 1);
+	};
+
 
 	// Click sobre botones de Meta
 	$("#meta1").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(3,this);
 		}
 	});
 	$("#meta2").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(4,this);
 		}
 	});
 	$("#meta3").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(5,this);
 		}
 	});
 	$("#meta4").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(6,this);
 		}
 	});
 	$("#meta5").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(7,this);
 		}
 	});
 	$("#meta6").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(8,this);
 		}
 	});
 	$("#meta7").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(9,this);
 		}
 	});
 	$("#meta8").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(10,this);
 		}
 	});
 	$("#meta9").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if ( estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(11,this);
 		}
 	});
 	$("#meta10").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(12,this);
 		}
 	});
 	$("#meta11").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(13,this);
 		}
 	});
 	$("#meta12").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(14,this);
 		}
 	});
 	$("#meta13").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(15,this);
 		}
 	});
 	$("#meta14").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(16,this);
 		}
 	});
 	$("#meta15").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(17,this);
 		}
 	});
 	$("#meta16").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(18,this);
 		}
 	});
 	$("#meta17").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(19,this);
 		}
 	});
 	$("#meta18").on("click", "", function () {
-		if (estado == 20 || estado == 0) {
+		if (estado == 0 || estado == 21) {
 			desactivarHoverTamañoSerie();
 			ajustarMeta(20,this);
 		}
@@ -1194,28 +1428,28 @@ function inicio() {
 
 	// Click sobre botones de tipo de Escala
 	$("#modo1").on("click", "", function (evento) {
-		if (estado == 0 || estado == 1) {
+		if (estado == 21 || estado == 1) {
 			modo = 0;
 			tonUsuario = tonMayor;
 			ajustarModo(this);
 		}
 	});
 	$("#modo2").on("click", "", function (evento) {
-		if (estado == 0 || estado == 1) {
+		if (estado == 21 || estado == 1) {
 			modo = 1;
 			tonUsuario = tonMenorArmonica;
 			ajustarModo(this);
 		}
 	});
 	$("#modo3").on("click", "", function (evento) {
-		if (estado == 0 || estado == 1) {
+		if (estado == 21 || estado == 1) {
 			modo = 2;
 			tonUsuario = tonMenorNatural;
 			ajustarModo(this);
 		}
 	});
 	$("#modo4").on("click", "", function (evento) {
-		if (estado == 0 || estado == 1) {
+		if (estado == 21 || estado == 1) {
 			modo = 3;
 			tonUsuario = tonMenorMelódica;
 			ajustarModo(this);
@@ -1286,7 +1520,7 @@ function inicio() {
 	});
 	
 	setTimeout(portada1, 400); //Inicia presentación del programa
-	setTimeout(portada2, 1400);
+	setTimeout(portada2, 0);
 	setTimeout(portada3, 2400);
 	setTimeout(creditos1, 3400); 
 	setTimeout(creditos2, 4400); 
@@ -1294,6 +1528,6 @@ function inicio() {
 	setTimeout(creditos4, 6400); 
 	setTimeout(creditos5, 7400); 
 	setTimeout(creditos6, 8400);
-	setTimeout(boton1, 9400); 
+	setTimeout(boton1, 500); 
 }
 
